@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_page"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="首页">
+    </item>
+    <item
+        android:id="@+id/food"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="称食">
+    </item>
+    <item
+        android:id="@+id/my"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="我的">
+    </item>
+
+
+</menu>

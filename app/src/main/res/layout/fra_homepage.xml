@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:textSize="50dp"
+                android:text="新品推荐"
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+                <TextView
+
+                    android:text="菜名，从后端获取"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+                <LinearLayout
+                    android:clipChildren="false"
+                    android:orientation="horizontal"
+                    android:id="@+id/home_page_pic"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp">
+                    <!--这里面等待从后端获取照片，添加image view作为填充图-->
+                    <androidx.viewpager.widget.ViewPager
+                        android:clipChildren="false"
+                        android:id="@+id/food_pic"
+                        android:layout_width="match_parent"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                        android:layout_height="wrap_content">
+
+
+                    </androidx.viewpager.widget.ViewPager>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+                <TextView
+                    android:textSize="50dp"
+                    android:text="每日所需营养素"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+                <TextView
+                    android:text="待确定内容"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp">
+                        <ImageView
+                            android:id="@+id/carbohydrate_pic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"></ImageView>
+                        <!--android:src="@drawable/ic_launcher_foreground"/>-->
+                        <TextView
+                            android:gravity="center"
+                            android:layout_toRightOf="@+id/carbohydrate_pic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="碳水化合物"/>
+                        <TextView
+                            android:gravity="center"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="153克"/>
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp">
+                        <ImageView
+                            android:id="@+id/protein_pic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"></ImageView>
+                        <!--android:src="@drawable/ic_launcher_foreground"/>-->
+                        <TextView
+                            android:gravity="center"
+                            android:layout_toRightOf="@+id/protein_pic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="蛋白质"/>
+                        <TextView
+                            android:gravity="center"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="2553克"/>
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp">
+                        <ImageView
+                            android:id="@+id/fat_pic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"></ImageView>
+                        <!--android:src="@drawable/ic_launcher_foreground"/>-->
+                        <TextView
+                            android:gravity="center"
+                            android:layout_toRightOf="@+id/fat_pic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="脂肪"/>
+                        <TextView
+                            android:gravity="center"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="74克"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+                <Button
+                    android:id="@+id/measure"
+                    android:text="立刻免费测量"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="今日食谱"
+                    android:textSize="50dp"/>
+                <Button
+                    android:text="定制私人配餐"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

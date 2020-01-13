@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".adress.AdressActivity">
+    <TextView
+        android:text="我的收货地址"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6">
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/adress_add_here"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/adress_hide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="暂时没有收获地址"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle_adress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+            <Button
+                android:id="@+id/adress_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="新增收获地址" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
