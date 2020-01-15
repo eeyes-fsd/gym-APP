@@ -15,43 +15,66 @@ import com.example.myapplication.home_page.Fra_food;
 import com.example.myapplication.home_page.Fra_homepage;
 import com.example.myapplication.main_page.BaseActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+//import com.android.support.design.widget.BottomNavigationView;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener{
     private Fra_homepage fra_homepage;
     private Fra_My fra_my;
     private Fra_food fra_food;
-    private Button btn_homepage;
-    private Button btn_my;
-    private Button btn_food;
+//    private Button btn_homepage;
+//    private Button btn_my;
+//    private Button btn_food;
+    private BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         fra_homepage=new Fra_homepage();
         fra_my=new Fra_My();
         fra_food=new Fra_food();
         getSupportFragmentManager().beginTransaction().replace(R.id.home_ll,fra_homepage).commit();
-        btn_food=findViewById(R.id.home_page_food);
-        btn_homepage=findViewById(R.id.home_page_home);
-        btn_my=findViewById(R.id.home_page_my);
-        btn_homepage.setOnClickListener(this);
-        btn_my.setOnClickListener(this);
-        btn_food.setOnClickListener(this);
+        bottomNavigationView=findViewById(R.id.main_bv);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.home_page:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.home_ll,fra_homepage).commit();
+
+                        return true;
+                    case R.id.my:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.home_ll,fra_my).commit();
+                        return true;
+                    case R.id.food:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.home_ll,fra_food).commit();
+                        return true;
+                }
+                return false;
+            }
+        });
+//        btn_food=findViewById(R.id.home_page_food);
+//        btn_homepage=findViewById(R.id.home_page_home);
+//        btn_my=findViewById(R.id.home_page_my);
+//        btn_homepage.setOnClickListener(this);
+//        btn_my.setOnClickListener(this);
+//        btn_food.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.home_page_food:
-                getSupportFragmentManager().beginTransaction().replace(R.id.home_ll,fra_food).commit();
-                break;
-            case R.id.home_page_my:
-                getSupportFragmentManager().beginTransaction().replace(R.id.home_ll,fra_my).commit();
-                break;
-            case R.id.home_page_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.home_ll,fra_homepage).commit();
-                break;
-        }
+//        switch (v.getId()){
+//            case R.id.home_page_food:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.home_ll,fra_food).commit();
+//                break;
+//            case R.id.home_page_my:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.home_ll,fra_my).commit();
+//                break;
+//            case R.id.home_page_home:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.home_ll,fra_homepage).commit();
+//                break;
+//        }
     }
 
     @Override

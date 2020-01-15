@@ -63,6 +63,7 @@ public class Fra_homepage extends Fragment implements View.OnClickListener{
         });
         return view;
     }
+
     private void Init_pic(){
         list.add(R.drawable.pic_text_2);
         list.add(R.drawable.pic_test_3);
