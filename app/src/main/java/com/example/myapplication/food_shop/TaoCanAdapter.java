@@ -1,6 +1,7 @@
 package com.example.myapplication.food_shop;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.myapplication.Constant;
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 
 import java.util.List;
@@ -52,7 +55,28 @@ public class TaoCanAdapter extends RecyclerView.Adapter<TaoCanAdapter.ViewHolder
         viewHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(),viewHolder.textView.getText(),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(v.getContext(),viewHolder.textView.getText(),Toast.LENGTH_SHORT).show();
+                int postion=viewHolder.getAdapterPosition();
+                TaoCan taoCan=mTaoCanlist.get(postion);
+                //更改要同时两个东西，达到对应关系
+                Global_shop_cart.taoCanlist.add(taoCan);
+                Global_shop_cart.foodlist.add(taoCan.foodList);
+                try {
+                    Toast.makeText(v.getContext(),Global_shop_cart.taoCanlist.get(Global_shop_cart.taoCanlist.size()-1).getName(),Toast.LENGTH_SHORT).show();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+        viewHolder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int postion=viewHolder.getAdapterPosition();
+                TaoCan taoCan=mTaoCanlist.get(postion);
+                Intent intent=new Intent(mcontext,Taocan_sp_Activity.class);
+                intent.putExtra(Constant.TAOCAN_NAME,taoCan.getName());
+                intent.putExtra(Constant.TAOCAN_IMAGE,taoCan.getImageId());
+                mcontext.startActivity(intent);
             }
         });
         return viewHolder;
@@ -64,10 +88,9 @@ public class TaoCanAdapter extends RecyclerView.Adapter<TaoCanAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         TaoCan taoCan=mTaoCanlist.get(position);
         holder.textView.setText(taoCan.getName());
         Glide.with(mcontext).load(taoCan.getImageId()).into(holder.imageView);
-
     }
 }

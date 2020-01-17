@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/main_nv"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="500dp">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="500dp">
+            <ExpandableListView
+                android:id="@+id/shop_cart_elv"
+                android:layout_width="match_parent"
+                android:layout_height="500dp">
+            </ExpandableListView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

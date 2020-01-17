@@ -32,6 +32,7 @@
         <activity android:name=".adress.AdressActivity" />
         <activity android:name=".Test_Hight_WeightActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".food_shop.Shop_cart_window" android:theme="@style/MyDialogStyleBottom" />
     </application>
 
 </manifest>
