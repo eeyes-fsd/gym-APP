@@ -14,10 +14,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.Constant;
 import com.example.myapplication.R;
+import com.example.myapplication.main_page.BaseActivity;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 
-public class Taocan_sp_Activity extends AppCompatActivity {
+public class Taocan_sp_Activity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

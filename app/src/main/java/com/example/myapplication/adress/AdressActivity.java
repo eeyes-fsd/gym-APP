@@ -60,10 +60,10 @@ public class AdressActivity extends BaseActivity implements View.OnClickListener
         button.setOnClickListener(this);
         recyclerView=findViewById(R.id.recycle_adress);
         Init_adress();
+        judge();
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         adapter.setList(list);
-
         recyclerView.setAdapter(adapter);
     }
     void Init_adress(){//这里安放的是请求功能函数
@@ -171,6 +171,7 @@ public class AdressActivity extends BaseActivity implements View.OnClickListener
                     Adress adress1=new Adress(adress,gender,tel,name);
                     list.add(adress1);
                     count=list.size();
+                    judge();
                     adapter.notifyDataSetChanged();
                     new Thread(new Runnable() {
                         @Override

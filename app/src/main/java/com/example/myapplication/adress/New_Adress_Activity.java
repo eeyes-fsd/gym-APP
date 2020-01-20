@@ -41,6 +41,7 @@ public class New_Adress_Activity extends BaseActivity implements View.OnClickLis
         editText_tel=findViewById(R.id.new_adress_tel);
         editText_name=findViewById(R.id.new_adress_name);
         button.setOnClickListener(this);
+
     }
     @Override
     public void onClick(View v) {
