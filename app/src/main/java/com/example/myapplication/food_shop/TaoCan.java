@@ -4,11 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaoCan {
+    public boolean isAdded;
+    private int num;
     public List<Food> foodList=new ArrayList<>();
+    private int imageId;//图片
+    private String name;//名字
+
+
     public TaoCan(int imageId, String name) {
         this.imageId = imageId;
         this.name = name;
         num=1;
+        isAdded=false;
     }
 
     public int getImageId() {
@@ -27,8 +34,7 @@ public class TaoCan {
         this.name = name;
     }
 
-    private int imageId;
-    private String name;
+
 
     public int getNum() {
         return num;
@@ -38,7 +44,6 @@ public class TaoCan {
         this.num = num;
     }
 
-    private int num;
     public int getPrice(){
         int sum=0;
         for (int i=0;i<foodList.size();i++){

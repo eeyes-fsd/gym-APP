@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">GYM</string>
-
+    <string name="main_con">主要食材</string>
 </resources>

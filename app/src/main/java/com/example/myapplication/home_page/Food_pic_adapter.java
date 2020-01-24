@@ -1,6 +1,7 @@
 package com.example.myapplication.home_page;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.myapplication.R;
+import com.example.myapplication.food_shop.RecipeActivity;
+import com.example.myapplication.food_shop.RecipeAdapter;
 
 import java.util.List;
 import java.util.zip.Inflater;
@@ -40,7 +43,7 @@ public class Food_pic_adapter extends PagerAdapter {
         imageView.setOnClickListener(new View.OnClickListener() {//点击事件
             @Override
             public void onClick(View v) {
-                Toast.makeText(view.getContext(),"click it",Toast.LENGTH_SHORT).show();
+                context.startActivity(new Intent(context, RecipeActivity.class));
             }
         });
         

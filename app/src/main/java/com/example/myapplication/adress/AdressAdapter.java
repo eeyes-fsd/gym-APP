@@ -1,9 +1,11 @@
 package com.example.myapplication.adress;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,11 +21,14 @@ import java.util.List;
  */
 public class AdressAdapter extends RecyclerView.Adapter<AdressAdapter.ViewHolder> {
     private List<Adress> list;
+    public void setList(List<Adress> list) {
+        this.list = list;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView textView_name_gender;
         TextView textView_adress;
         TextView textView_tel;
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textView_adress=itemView.findViewById(R.id.adress_ar);
@@ -31,20 +36,17 @@ public class AdressAdapter extends RecyclerView.Adapter<AdressAdapter.ViewHolder
             textView_tel=itemView.findViewById(R.id.adress_tel);
         }
     }
-
-    public AdressAdapter(List<Adress> list) {
+    public AdressAdapter(List<Adress> list){
         this.list=list;
     }
+
     public AdressAdapter(){
-
-    }
-    public void setList(List<Adress> list){
-        this.list=list;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Adress adress=list.get(position);
+
         holder.textView_tel.setText(adress.getTel());
         holder.textView_name_gender.setText(adress.getName()+" "+adress.getSex());
         holder.textView_adress.setText(adress.getAdress());

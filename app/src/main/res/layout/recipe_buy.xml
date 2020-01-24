@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/main_nv"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:text="配餐定制方式"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <RadioGroup
+        android:id="@+id/recipe_radio_group"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+        <RadioButton
+            android:id="@+id/radio_btn_one"
+            android:text="第一个"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/recipe_btn_selector"
+            android:button="@null"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <RadioButton
+            android:id="@+id/radio_btn_two"
+            android:layout_marginEnd="5dp"
+            android:text="这是第二个"
+            android:background="@drawable/recipe_btn_selector"
+            android:button="@null"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <RadioButton
+            android:id="@+id/radio_btn_three"
+            android:text="第三个"
+            android:background="@drawable/recipe_btn_selector"
+            android:button="@null"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    </RadioGroup>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+        <TextView
+            android:text="套餐搭配选择（可再选两项）"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <RadioButton
+                    android:text="oneasdasdsad"
+                    android:background="@drawable/recipe_btn_sixuaner"
+                    android:button="@null"
+                    android:id="@+id/taocan_extra_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+                <RadioButton
+                    android:layout_marginLeft="5dp"
+                    android:text="twoasdasdasd"
+                    android:background="@drawable/recipe_btn_sixuaner"
+                    android:button="@null"
+                    android:id="@+id/taocan_extra_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <RadioButton
+                    android:text="threeasdasdasd"
+                    android:background="@drawable/recipe_btn_sixuaner"
+                    android:button="@null"
+                    android:id="@+id/taocan_extra_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+                <RadioButton
+                    android:text="fourasdasdasd"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/recipe_btn_sixuaner"
+                    android:button="@null"
+                    android:id="@+id/taocan_extra_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:text="食谱简介，购买详情，阿萨的百万i点八四u的承诺八速快递放假ASUDJNFCBXASUKDJCBN扣税的长发女孩或许AMCBSNUJCHXDM卡组出现呢JCDXMKCJHNCMK案件"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/recipe_buy_btn"
+        android:layout_gravity="bottom"
+        android:text="立刻购买"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

@@ -61,11 +61,12 @@ public class AdressActivity extends BaseActivity implements View.OnClickListener
         recyclerView=findViewById(R.id.recycle_adress);
         Init_adress();
         judge();
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
         adapter.setList(list);
+        RecyclerView.LayoutManager manager=new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
     }
+
     void Init_adress(){//这里安放的是请求功能函数
 //        new Thread(new Runnable() {
 //            @Override

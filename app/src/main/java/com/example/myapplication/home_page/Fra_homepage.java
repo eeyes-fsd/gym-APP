@@ -1,6 +1,7 @@
 package com.example.myapplication.home_page;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,7 +21,9 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.myapplication.Constant;
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.food_shop.RecipeActivity;
 import com.example.myapplication.web.WebService;
 
 import java.io.InputStream;
@@ -58,7 +61,8 @@ public class Fra_homepage extends Fragment implements View.OnClickListener{
         viewPager.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),viewPager.getCurrentItem()+"",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getActivity(),viewPager.getCurrentItem()+"",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), RecipeActivity.class));//跳转
             }
         });
         return view;

@@ -23,7 +23,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".adress.LocaionActivity"></activity>
+        <activity android:name=".food_shop.RecipeActivity"></activity>
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity android:name=".adress.LocaionActivity" />
 
         <meta-data
             android:name="TencentMapSDK"

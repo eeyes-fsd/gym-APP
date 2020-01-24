@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/main_nv"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="500dp">
+    android:gravity="bottom"
+    android:layout_height="match_parent">
+
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="500dp">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="500dp">
@@ -17,4 +21,18 @@
             </ExpandableListView>
         </LinearLayout>
     </ScrollView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:text="价格：￥123"
+            android:id="@+id/shop_cart_price"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:text="下单" />
+    </RelativeLayout>
 </LinearLayout>

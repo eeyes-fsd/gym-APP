@@ -11,8 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.bigkoo.pickerview.TimePickerView;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.example.myapplication.main_page.BaseActivity;
 
 import java.text.SimpleDateFormat;

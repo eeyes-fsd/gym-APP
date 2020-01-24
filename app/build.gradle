@@ -35,5 +35,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'de.hdodenhof:circleimageview:2.1.0'
     implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.contrarywind:Android-PickerView:3.2.6'
     implementation files('libs/TencentLocationSdk_v7.2.4_r3f64968c_20190828_105426.jar')
+    implementation 'com.contrarywind:Android-PickerView:4.1.9'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+
 }

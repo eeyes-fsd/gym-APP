@@ -6,7 +6,6 @@ import android.view.View;
 public class Adress {
     private int ID;
     public Adress(){
-
     }
     public Adress(String adress, String sex, String tel, String name) {
         this.adress = adress;
