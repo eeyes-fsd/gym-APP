@@ -18,6 +18,8 @@ import com.example.myapplication.R;
 import com.example.myapplication.Test_Hight_WeightActivity;
 import com.example.myapplication.adress.AdressActivity;
 import com.example.myapplication.main_page.Un_sign_inActivity;
+import com.example.myapplication.pay.PayActivity;
+import com.example.myapplication.web.Token;
 
 public class Fra_My extends Fragment implements View.OnClickListener{
     private TextView textView;
@@ -48,7 +50,7 @@ public class Fra_My extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.my_adress:
-                Intent intent_adress=new Intent(getActivity(), AdressActivity.class);
+                Intent intent_adress=new Intent(getActivity(), PayActivity.class);
                 startActivity(intent_adress);
                 break;
             case R.id.my_hight_weight:
@@ -56,9 +58,13 @@ public class Fra_My extends Fragment implements View.OnClickListener{
                 startActivity(intent);
                 break;
             case R.id.exit:
-                SharedPreferences sharedPreferences=getActivity().getSharedPreferences("token",Context.MODE_PRIVATE);
+                SharedPreferences sharedPreferences=getActivity().getSharedPreferences(Token.name,Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor=sharedPreferences.edit();
-                editor.putInt("token",0);
+                editor.putInt("token",0);//测试版本
+
+//                editor.putString(Token.key1,null);
+//                editor.putLong(Token.key2,0);
+
                 editor.apply();
                 Intent intent1=new Intent(getActivity(),Un_sign_inActivity.class);
                 startActivity(intent1);

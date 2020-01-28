@@ -8,7 +8,8 @@ public class Global_shop_cart {
     public static List<TaoCan> taoCanlist=new ArrayList<>();//所有套餐
     public static List<TaoCan> taoCan_search_list=new ArrayList<>();//展示的套餐
     public static List<List<Food>> food_search_list=new ArrayList<>();//展示的食物
-
+    public static List<TaoCan> taoCan_bought_list=new ArrayList<>();//展示的套餐
+    public static List<List<Food>> food_bought_list=new ArrayList<>();//展示的食物
     public static void copy_food(){
         food_search_list.clear();
         food_search_list.addAll(foodlist);
@@ -17,13 +18,14 @@ public class Global_shop_cart {
         taoCan_search_list.clear();
         taoCan_search_list.addAll(taoCanlist);
     }
+
     private static void clear__all(){
         //把所有套餐的状态改为未未添加
         for(int i=0;i<taoCanlist.size();i++){
             taoCanlist.get(i).isAdded=false;
         }
     }
-    private static void init(){
+    private static void init(){//清空搜索列表
         clear__all();
         taoCan_search_list.clear();
         food_search_list.clear();
@@ -54,4 +56,41 @@ public class Global_shop_cart {
             }
         }
     }
+
+    public static void bought_add(TaoCan taoCan){
+        int i=Is_repeated(taoCan);
+        if (i==-1){//不重复
+            taoCan_bought_list.add(taoCan);
+        }else {
+            taoCan_bought_list.get(i).num_add();
+        }
+    }
+    public static void bought_add(int position){
+        taoCan_bought_list.get(position).num_add();
+    }
+    public static void bought_sub(int position){
+        taoCan_bought_list.get(position).num_sub();
+        if (taoCan_bought_list.get(position).getNum()==0){
+            taoCan_bought_list.remove(position);
+        }
+    }
+
+    public static int Is_repeated(TaoCan taoCan){
+        for (int i=0;i<taoCan_bought_list.size();i++){//搜索购买列表
+            if (taoCan_bought_list.get(i).getName().equals(taoCan.getName())){
+                return i;
+            }
+        }
+        return -1;
+    }
+    public int get_bought_price(){
+        int price=0;
+        for (TaoCan taoCan:taoCan_bought_list){
+            for (Food food:taoCan.foodList){
+                price=food.getPrice()*food.getNum();
+            }
+        }
+        return  price;
+    }
+
 }

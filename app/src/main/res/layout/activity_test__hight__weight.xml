@@ -25,21 +25,11 @@
                 android:textSize="24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-            <RadioGroup
-                android:id="@+id/radio_group_sex"
+            <TextView
+                android:id="@+id/healthy_gender"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <RadioButton
-                    android:id="@+id/btn_sex_man"
-                    android:text="男"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <RadioButton
-                    android:id="@+id/btn_sex_female"
-                    android:text="女"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </RadioGroup>
+                android:text="男"
+                android:layout_height="wrap_content" />
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="20dp"
@@ -56,6 +46,25 @@
                 android:clickable="true"
                 android:id="@+id/text_my_birth_day"
                 android:text="my_birth_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="身高"
+                android:textSize="24dp"/>
+            <TextView
+                android:clickable="true"
+                android:text="请输入身高，单位厘米"
+                android:textSize="18dp"
+                android:id="@+id/my_hight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -109,6 +118,7 @@
                 android:text="饮食控制目的"
                 android:textSize="24dp"/>
             <TextView
+
                 android:clickable="true"
                 android:text="请输入目的"
                 android:textSize="18dp"
@@ -128,6 +138,38 @@
             android:textSize="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="24dp"
+                android:text="体脂率"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="请输入您的体脂率"
+                android:textColor="@color/food_gray"
+                android:id="@+id/fat_rate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="24dp"
+                android:text="骨盐率"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="请输入您的骨盐率"
+                android:textColor="@color/food_gray"
+                android:id="@+id/salt_rate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
         <LinearLayout
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
@@ -177,5 +219,11 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+        <Button
+            android:layout_gravity="center"
+            android:text="确定"
+            android:id="@+id/healthy_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </ScrollView>

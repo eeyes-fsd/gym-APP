@@ -2,6 +2,9 @@ package com.example.myapplication.food_shop;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +24,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.Constant;
 import com.example.myapplication.R;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
     private Context mcontext;
@@ -50,32 +61,55 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (mcontext==null){
             mcontext=parent.getContext();
+
         }
         View view= LayoutInflater.from(mcontext).inflate(R.layout.recipe_item,parent,false);
         ViewHolder viewHolder=new ViewHolder(view);
         return viewHolder;
     }
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        TaoCan taoCan=taoCanList.get(position);
-        holder.imageView_img.setImageResource(taoCan.getImageId());
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+        final TaoCan taoCan=taoCanList.get(position);
+        //holder.imageView_img.setImageResource(taoCan.getImageId());
         holder.textView_name.setText(taoCan.getName());
-        StringBuilder stringBuilder=new StringBuilder(Constant.MAIN_con+" ");
-        for (Food food:taoCan.foodList){
-            stringBuilder.append(food.getName());
-            stringBuilder.append(",");
-        }
-        holder.textView_shicai.setText(stringBuilder);
+        holder.textView_shicai.setText(taoCan.getDescription());
+        Log.d("SWB", "onBindViewHolder: "+taoCan.getHttp_pic());
+        Request request=new Request.Builder().url(taoCan.getHttp_pic()).build();
+        OkHttpClient client=new OkHttpClient();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                //这里准备一张图片作为默认图片
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try{
+                    InputStream inputStream = response.body().byteStream();//得到图片的流
+                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                    holder.imageView_img.setImageBitmap(bitmap);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+
+//        StringBuilder stringBuilder=new StringBuilder(Constant.MAIN_con+" ");
+//        for (Food food:taoCan.foodList){
+//            stringBuilder.append(food.getName());
+//            stringBuilder.append(",");
+//        }
+//        holder.textView_shicai.setText(stringBuilder);
+
         holder.textView_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(mcontext,"sdaadasd",Toast.LENGTH_SHORT).show();
-//                mcontext.startActivity(new Intent(mcontext,recipe_window.class));
                 View contentView = LayoutInflater.from(mcontext).inflate(R.layout.recipe_buy,null);
                 popupWindow=new PopupWindow(contentView, RadioGroup.LayoutParams.MATCH_PARENT, RadioGroup.LayoutParams.WRAP_CONTENT);
                 popupWindow.setContentView(contentView);
 //                final int check[] ={0,0,0,0};
                 Button button=contentView.findViewById(R.id.recipe_buy_btn);
+                RadioButton radioButton=contentView.findViewById(R.id.taocan_extra_1);
+                radioButton.setText(taoCan.getName());
 //                RadioGroup radioGroup=contentView.findViewById(R.id.recipe_radio_group);
 //                final RadioButton radioButton1=contentView.findViewById(R.id.taocan_extra_1);
 //                final RadioButton radioButton2=contentView.findViewById(R.id.taocan_extra_2);
@@ -131,7 +165,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
                     public void onClick(View v) {
                         //int n=check[0]+check[1]+check[2]+check[3];
                         Toast.makeText(mcontext,"sadasd",Toast.LENGTH_SHORT).show();
-
                     }
                 });
 

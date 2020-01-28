@@ -7,6 +7,8 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.JsonToken;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -27,35 +29,46 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.Permission;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okio.BufferedSink;
 
 public class WebService {
-    private static String data;
-    private final static String url="eeyes";//这里是静态网址链接，以后会有很多，现在用一个url代替
+    private final static String url = "eeyes";//这里是静态网址链接，以后会有很多，现在用一个url代替
+    private final static String API_HOST = "https://gym.eeyes.xyz/api";//接口的地址，接口都需要在这个的基础上加一些来申请
+    private final static String HOST = "https://gym.eeyes.xyz";
 
-    public static String WebRequest_GET(final String adress){
+    public static String WebRequest_GET(final String adress) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                HttpURLConnection connection=null;
-                BufferedReader reader=null;
-
+                HttpURLConnection connection = null;
+                BufferedReader reader = null;
                 try {
                     //请求前加上token
-                    URL url=new URL(adress);
-                    connection=(HttpURLConnection) url.openConnection();
+                    URL url = new URL(adress);
+                    connection = (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod("GET");
                     connection.setConnectTimeout(10000);//超时事件为10s
                     connection.setReadTimeout(10000);//超时事件为10s
                     connection.connect();
-                    if (connection.getResponseCode()==200){//请求成功
-                        InputStream in=connection.getInputStream();
-                        reader=new BufferedReader(new InputStreamReader(in));//得到了输入，接下来开始处理数据******************************************************
-                        StringBuilder response=new StringBuilder();
+                    if (connection.getResponseCode() == 200) {//请求成功
+                        InputStream in = connection.getInputStream();
+                        reader = new BufferedReader(new InputStreamReader(in));//得到了输入，接下来开始处理数据******************************************************
+                        StringBuilder response = new StringBuilder();
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
-                }finally {
-                    if (connection!=null){
+                } finally {
+                    if (connection != null) {
                         connection.disconnect();
                     }
                 }
@@ -63,28 +76,29 @@ public class WebService {
         }).start();
         return "";
     }
-    public static String WebRequest_POST(final String adress,final String data){
+
+    public static String WebRequest_POST(final String adress, final String data) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                HttpURLConnection connection=null;
+                HttpURLConnection connection = null;
                 try {
-                    URL url=new URL(adress);
-                    connection=(HttpURLConnection) url.openConnection();
+                    URL url = new URL(adress);
+                    connection = (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod("POST");
                     connection.setDoOutput(true);
-                    connection.setConnectTimeout(1000*10);
+                    connection.setConnectTimeout(1000 * 10);
                     connection.connect();
-                    switch (connection.getResponseCode()){//////////////////根据返回码进行操作
+                    switch (connection.getResponseCode()) {//////////////////根据返回码进行操作
                         case 1:
                             break;
-                            default:
-                                break;
+                        default:
+                            break;
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
-                }finally {
-                    if (connection!=null){
+                } finally {
+                    if (connection != null) {
                         connection.disconnect();
                     }
                 }
@@ -94,10 +108,11 @@ public class WebService {
         }).start();
         return "";
     }
-    public static int Handler_Sign_in(final String username,final String password){
-        if (username.equals("user")&&password.equals("passwd")){
+
+    public static int Handler_Sign_in(final String username, final String password) {
+        if (username.equals("user") && password.equals("passwd")) {
             return 200;
-        }else return 1;
+        } else return 1;
         //下面是网络请求，现在先用默认的简单请求
 
 
@@ -143,35 +158,36 @@ public class WebService {
 //                            }
 //                        }
 //                    }).start();
-                    //return 200;
+        //return 200;
     }
 
-    private static void Analyse_Answer(String data){
+    private static void Analyse_Answer(String data) {
         //这里处理得到的登入结果
         try {
-            JSONObject json_data=new JSONObject(data);
-            Boolean state=json_data.getBoolean("success");//是否登录成功
-            String msg=json_data.getString("msg"); //其他信息，具体信息待定
-        }catch (Exception e){
+            JSONObject json_data = new JSONObject(data);
+            Boolean state = json_data.getBoolean("success");//是否登录成功
+            String msg = json_data.getString("msg"); //其他信息，具体信息待定
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public void Get_Pic(final String url, ImageView imageView){
+
+    public void Get_Pic(final String url, ImageView imageView) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     URL imgUrl = new URL(url);
-                    HttpURLConnection conn = (HttpURLConnection)imgUrl.openConnection();
+                    HttpURLConnection conn = (HttpURLConnection) imgUrl.openConnection();
                     conn.setDoInput(true);
                     conn.setRequestMethod("GET");
                     //链接超时
-                    conn.setConnectTimeout(1000*10);
+                    conn.setConnectTimeout(1000 * 10);
                     //读取超时
-                    conn.setReadTimeout(1000*10);
+                    conn.setReadTimeout(1000 * 10);
                     conn.connect();
                     //获得输入流
-                    if(conn.getResponseCode()==200){
+                    if (conn.getResponseCode() == 200) {
                         InputStream is = conn.getInputStream();
                         //把其转化为位图
                         Bitmap bitmap = BitmapFactory.decodeStream(is);
@@ -179,20 +195,78 @@ public class WebService {
                     }
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
-                }catch(IOException e){
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }).start();
     }
-    public static void Ask_For_Internet(Activity activity,String[] permissions,int requestCode){
 
-        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.INTERNET)== PackageManager.PERMISSION_GRANTED){//得到许可
-            Toast.makeText(activity,"得到许可",Toast.LENGTH_SHORT).show();
-        }else {
-            ActivityCompat.requestPermissions(activity,permissions,requestCode);
+    public static void Ask_For_Internet(Activity activity, String[] permissions, int requestCode) {//网络许可
+
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED) {//得到许可
+            Toast.makeText(activity, "得到许可", Toast.LENGTH_SHORT).show();
+        } else {
+            ActivityCompat.requestPermissions(activity, permissions, requestCode);
         }
     }
-
-
+    public static Call GYM_call(String url, String token, String method, JSONObject jsonObject) {
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(5, TimeUnit.SECONDS)//十秒的超时时间
+                .writeTimeout(5, TimeUnit.SECONDS)//写入超时
+                .readTimeout(5, TimeUnit.SECONDS)//读取超时
+                .build();
+        Request request = null;
+        switch (method) {
+            case "GET":
+                request = new Request.Builder()
+                        .url(API_HOST + url)
+                        .addHeader("content-type", "application/x-www-form-urlencoded")//请求头
+                        .addHeader("Authorization", token)//token,记得判断一下是否过期
+                        .build();
+                break;
+            case "POST":
+                RequestBody requestBody = null;
+                request = new Request.Builder()
+                        .post(requestBody)
+                        .url(API_HOST + url)
+                        .addHeader("content-type", "application/x-www-form-urlencoded")//请求头
+                        .addHeader("Authorization", token)//token,先判断一下是否过期
+                        .build();
+                break;
+            case "PUT":
+                RequestBody requestBody1 = null;
+                request = new Request.Builder()
+                        .put(requestBody1)
+                        .url(API_HOST + url)
+                        .addHeader("content-type", "application/x-www-form-urlencoded")//请求头
+                        .addHeader("Authorization", token)//token,先判断一下是否过期
+                        .build();
+                break;
+            case "DELETE":
+                RequestBody requestBody2 = null;
+                request = new Request.Builder()
+                        .delete(requestBody2)
+                        .url(API_HOST + url)
+                        .addHeader("content-type", "application/x-www-form-urlencoded")//请求头
+                        .addHeader("Authorization", token)//token,先判断一下是否过期
+                        .build();
+                break;
+                default:return null;
+        }
+        Call call = client.newCall(request);
+        return call;
+    }
+    public static synchronized String getJsonStrFromNetData(String jsonString){
+        if (jsonString == null) {
+            return null;
+        }
+        int first = jsonString.indexOf("[");
+        int last = jsonString.lastIndexOf("]");
+        String result = "";
+        if (last > first) {
+            result = jsonString.substring(first, last + 1);
+        }
+        return result;
+    }
 }

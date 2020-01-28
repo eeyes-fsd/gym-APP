@@ -68,20 +68,22 @@ public class Shop_cart_adapter extends BaseExpandableListAdapter {
         taocanHolder.taocan_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int num=Global_shop_cart.taoCanlist.get(groupPosition).getNum();
-                Global_shop_cart.taoCanlist.get(groupPosition).setNum(num+1);
-                Toast.makeText(v.getContext(),Integer.toString(Global_shop_cart.taoCanlist.get(groupPosition).getNum()),Toast.LENGTH_SHORT).show();
-                taocanHolder.taocan_num.setText(Integer.toString(Global_shop_cart.taoCanlist.get(groupPosition).getNum()));
+//                int num=Global_shop_cart.taoCanlist.get(groupPosition).getNum();
+//                Global_shop_cart.taoCanlist.get(groupPosition).setNum(num+1);
+//                Toast.makeText(v.getContext(),Integer.toString(Global_shop_cart.taoCanlist.get(groupPosition).getNum()),Toast.LENGTH_SHORT).show();
+//                taocanHolder.taocan_num.setText(Integer.toString(Global_shop_cart.taoCanlist.get(groupPosition).getNum()));
+                Global_shop_cart.bought_add(groupPosition);
                 notifyDataSetChanged();
             }
         });
         taocanHolder.taocan_sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int num=Global_shop_cart.taoCanlist.get(groupPosition).getNum();
-                Global_shop_cart.taoCanlist.get(groupPosition).setNum(num-1);
-                Toast.makeText(v.getContext(),Integer.toString(Global_shop_cart.taoCanlist.get(groupPosition).getNum()),Toast.LENGTH_SHORT).show();
-                taocanHolder.taocan_num.setText(Integer.toString(Global_shop_cart.taoCanlist.get(groupPosition).getNum()));
+//                int num=Global_shop_cart.taoCanlist.get(groupPosition).getNum();
+//                Global_shop_cart.taoCanlist.get(groupPosition).setNum(num-1);
+//                Toast.makeText(v.getContext(),Integer.toString(Global_shop_cart.taoCanlist.get(groupPosition).getNum()),Toast.LENGTH_SHORT).show();
+//                taocanHolder.taocan_num.setText(Integer.toString(Global_shop_cart.taoCanlist.get(groupPosition).getNum()));
+                Global_shop_cart.bought_sub(groupPosition);
                 notifyDataSetChanged();
             }
         });
@@ -107,7 +109,6 @@ public class Shop_cart_adapter extends BaseExpandableListAdapter {
                 public void onClick(View v) {
                     int num=Global_shop_cart.foodlist.get(groupPosition).get(childPosition).getNum();
                     Global_shop_cart.foodlist.get(groupPosition).get(childPosition).setNum(num+1);//更改全局变量
-                    //foodList.get(groupPosition).get(childPosition).setNum(num+1);
                     foodHolder.numText.setText(Integer.toString(Global_shop_cart.foodlist.get(groupPosition).get(childPosition).getNum()));
                     notifyDataSetChanged();
                 }

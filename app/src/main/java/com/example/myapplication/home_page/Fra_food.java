@@ -49,7 +49,7 @@ public class Fra_food extends Fragment implements View.OnClickListener{
     }
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-       Init_1();//初始化套餐
+        Init_1();//初始化套餐
         Init_2();//初始化套餐的内容
         RecyclerView recyclerView=getView().findViewById(R.id.taocan_recycle);
         GridLayoutManager manager=new GridLayoutManager(getActivity(),2);

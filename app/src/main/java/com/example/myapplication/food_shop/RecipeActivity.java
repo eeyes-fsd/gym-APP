@@ -6,23 +6,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
+import com.example.myapplication.web.Token;
+import com.example.myapplication.web.WebService;
+import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class RecipeActivity extends AppCompatActivity implements View.OnClickListener {
     private RecyclerView recyclerView;
@@ -38,9 +43,10 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_recipe);
        // setContentView(R.layout.recipe_buy);
      //   setContentView(R.layout.test);
-        Init_1();
-        Log.d("SWB", "点击成功");
-        Init_2();
+//        Init_1();
+//        Log.d("SWB", "点击成功");
+//        Init_2();
+        get_data();
         adapter=new  RecipeAdapter(taoCanList);
         recyclerView=findViewById(R.id.recipe_recycle);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
@@ -91,13 +97,61 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         try {
-            adapter.popupWindow.dismiss();
+            if (adapter.popupWindow.isShowing()) adapter.popupWindow.dismiss();
         }catch (Exception e){
             e.printStackTrace();
         }
         return super.dispatchTouchEvent(ev);
     }
+    void get_data(){
+        if (Global_shop_cart.taoCanlist.isEmpty()){//当数据为空时获得全部数据
 
+
+            //Token.judge(this);
+            //Call call = WebService.GYM_call(TaoCan.get_all_recipe,Token.access_token,"GET",null);
+
+            Request request=new Request.Builder().url("http://10.0.2.2/get_recipe.json").build();
+            OkHttpClient client=new OkHttpClient();
+            Call call=client.newCall(request);
+            Log.d("SWBSWBSWB", "孙文冰孙文冰");
+            call.enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(RecipeActivity.this,"网络连接失败",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    try {
+                        Log.d("SWBSWBSWB", "response撒是的哇打算");
+                        String s=response.body().string();
+//                        TaoCan[] taoCans=new Gson().fromJson(s,TaoCan[].class);
+//                        for (TaoCan taoCan:taoCans){
+//                            taoCanList.add(taoCan);
+//                            Log.d("SWBSWBSWB", taoCan.getName());
+//                        }
+                        JSONArray jsonArray=new JSONArray(s);
+                        for (int i=0;i<jsonArray.length();i++){
+                            JSONObject jsonObject=jsonArray.getJSONObject(i);
+                            TaoCan taoCan=new TaoCan();
+                            taoCan.setName(jsonObject.getString("name"));
+                            taoCan.setId(jsonObject.getInt("id"));
+                            taoCan.setDescription(jsonObject.getString("description"));
+                            taoCan.setHttp_pic(jsonObject.getString("cover"));
+
+                            taoCanList.add(taoCan);
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+    }
     //    private void show(){
 //        View contentView = LayoutInflater.from(this).inflate(R.layout.recipe_buy,null);
 //        popupWindow=new PopupWindow(contentView,RadioGroup.LayoutParams.MATCH_PARENT, RadioGroup.LayoutParams.WRAP_CONTENT);
