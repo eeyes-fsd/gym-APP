@@ -67,7 +67,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="收货地址"/>
-        <EditText
+        <TextView
+            android:clickable="true"
             android:id="@+id/new_adress_adress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

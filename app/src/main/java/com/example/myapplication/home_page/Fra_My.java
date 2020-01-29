@@ -50,7 +50,7 @@ public class Fra_My extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.my_adress:
-                Intent intent_adress=new Intent(getActivity(), PayActivity.class);
+                Intent intent_adress=new Intent(getActivity(), AdressActivity.class);
                 startActivity(intent_adress);
                 break;
             case R.id.my_hight_weight:

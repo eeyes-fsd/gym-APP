@@ -84,6 +84,7 @@ public class AdressActivity extends BaseActivity implements View.OnClickListener
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
     }
+
     @Override
     protected void onResume() {
         super.onResume();

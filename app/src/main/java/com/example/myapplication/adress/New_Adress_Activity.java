@@ -1,5 +1,7 @@
 package com.example.myapplication.adress;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,7 +25,7 @@ public class New_Adress_Activity extends BaseActivity implements View.OnClickLis
     private String name;
     private EditText editText_tel;
     private String tel;
-    private EditText editText_adress;
+    private TextView textView_adress;
     private String adress;
     private EditText editText_menpai;
     private String menpai;
@@ -36,7 +38,9 @@ public class New_Adress_Activity extends BaseActivity implements View.OnClickLis
         button=findViewById(R.id.new_adress_summit);
         textView_sex=findViewById(R.id.new_adress_gender);
         textView_sex.setOnClickListener(this);
-        editText_adress=findViewById(R.id.new_adress_adress);
+
+        textView_adress=findViewById(R.id.new_adress_adress);
+        textView_adress.setOnClickListener(this);
         editText_menpai=findViewById(R.id.new_adress_menpai);
         editText_tel=findViewById(R.id.new_adress_tel);
         editText_name=findViewById(R.id.new_adress_name);
@@ -49,7 +53,7 @@ public class New_Adress_Activity extends BaseActivity implements View.OnClickLis
                 name=editText_name.getText().toString();
                 tel=editText_tel.getText().toString();
                 menpai=editText_menpai.getText().toString();
-                adress=editText_adress.getText().toString();
+                adress=textView_adress.getText().toString();
                 gender=textView_sex.getText().toString();
                 if(!name.equals("")&&!gender.equals("")&&!tel.equals("")&&!menpai.equals("")&&!adress.equals("")){
                     Intent intent=new Intent(New_Adress_Activity.this,AdressActivity.class);
@@ -76,7 +80,22 @@ public class New_Adress_Activity extends BaseActivity implements View.OnClickLis
                 });
                 builder1.show();
                 break;
+            case R.id.new_adress_adress:
+                startActivityForResult(new Intent(this,LocaionActivity.class),Constant.CHOOES_LOCATION);
+              // startActivityForResult(new Intent(this,LocaionActivity.class),Constant.CHOOES_LOCATION);
+                break;
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case Constant.CHOOES_LOCATION:
+                if (resultCode==RESULT_OK){
+                    textView_adress.setText(data.getStringExtra("address"));
+                }
+                break;
+        }
+    }
 }

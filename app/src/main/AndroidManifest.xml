@@ -17,13 +17,14 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
-        android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data android:name="com.amap.api.v2.apikey" android:value="8526e0f938c19daeb77163797eba2be9"></meta-data>
+        <service android:name="com.amap.api.location.APSService"></service>
         <activity android:name=".pay.Choose_AdressActivity"></activity>
         <activity android:name=".pay.PayActivity" />
         <activity android:name=".adress.Change_adress_Activity" />
@@ -34,9 +35,6 @@
             android:launchMode="singleTop" />
         <activity android:name=".adress.LocaionActivity" />
 
-        <meta-data
-            android:name="TencentMapSDK"
-            android:value="L57BZ-K246I-ZTZGF-5BD6U-IFW6E-BIFJN" />
 
         <activity android:name=".food_shop.Taocan_sp_Activity" />
         <activity android:name=".adress.New_Adress_Activity" />
