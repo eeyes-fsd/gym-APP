@@ -9,7 +9,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:id="@+id/home_ll"
-        android:layout_weight="8"
+        android:layout_weight="10"
         android:layout_width="match_parent"
         android:layout_height="0dp">
     </LinearLayout>
@@ -32,16 +32,16 @@
             <!--android:layout_width="0dp"-->
             <!--android:layout_height="match_parent"-->
             <!--android:layout_weight="1"/>-->
-
     <!--</LinearLayout>-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_bv"
         app:menu="@menu/home_page"
         android:layout_weight="1"
         android:background="@color/main_nv"
+        app:itemIconTint="@color/homepage_selector"
+        app:itemTextColor="@color/homepage_selector"
         android:layout_width="match_parent"
         android:layout_height="0dp">
-
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </LinearLayout>

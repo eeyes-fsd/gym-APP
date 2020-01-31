@@ -62,8 +62,8 @@ public class TaoCan {
     public TaoCan(int imageId, String name) {
         this.imageId = imageId;
         this.name = name;
-        num=1;
-        isAdded=false;
+        this.num=1;
+        this.isAdded=false;
     }
 
     public int getImageId() {
@@ -95,7 +95,7 @@ public class TaoCan {
     public int getPrice(){
         int sum=0;
         for (int i=0;i<foodList.size();i++){
-            sum=sum+foodList.get(i).getPrice();
+            sum=sum+foodList.get(i).getPrice()*foodList.get(i).getNum();
         }
         return sum;
     }

@@ -52,7 +52,7 @@ public class Shop_cart_adapter extends BaseExpandableListAdapter {
     }
     @Override
     public int getChildrenCount(int groupPosition) {
-        return Global_shop_cart.foodlist.get(groupPosition).size();
+        return Global_shop_cart.food_bought_list.get(groupPosition).size();
     }
 
     @Override
@@ -60,10 +60,9 @@ public class Shop_cart_adapter extends BaseExpandableListAdapter {
         if(convertView==null){
             convertView= LayoutInflater.from(mcontext).inflate(R.layout.taocan_shop_cart,parent,false);
         }
-
         final TaocanHolder taocanHolder=new TaocanHolder(convertView);
-        final int num=Global_shop_cart.taoCanlist.get(groupPosition).getNum();
-        taocanHolder.taocan_name.setText(Global_shop_cart.taoCanlist.get(groupPosition).getName());
+        final int num=Global_shop_cart.taoCan_bought_list.get(groupPosition).getNum();
+        taocanHolder.taocan_name.setText(Global_shop_cart.taoCan_bought_list.get(groupPosition).getName());
         taocanHolder.taocan_num.setText(Integer.toString(num));
         taocanHolder.taocan_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,28 +99,25 @@ public class Shop_cart_adapter extends BaseExpandableListAdapter {
         }else {
             foodHolder=(FoodHolder) convertView.getTag();
         }
-            final int num=Global_shop_cart.foodlist.get(groupPosition).get(childPosition).getNum();
-            foodHolder.numText.setText(Integer.toString(Global_shop_cart.foodlist.get(groupPosition).get(childPosition).getNum()));
-            foodHolder.priceText.setText(Integer.toString(Global_shop_cart.foodlist.get(groupPosition).get(childPosition).getPrice()));
-            foodHolder.nameText.setText(Global_shop_cart.foodlist.get(groupPosition).get(childPosition).getName());
+            foodHolder.numText.setText(Integer.toString(Global_shop_cart.food_bought_list.get(groupPosition).get(childPosition).getNum()));
+            foodHolder.priceText.setText(Integer.toString(Global_shop_cart.food_bought_list.get(groupPosition).get(childPosition).getPrice()));
+            foodHolder.nameText.setText(Global_shop_cart.food_bought_list.get(groupPosition).get(childPosition).getName());
             foodHolder.button_add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int num=Global_shop_cart.foodlist.get(groupPosition).get(childPosition).getNum();
-                    Global_shop_cart.foodlist.get(groupPosition).get(childPosition).setNum(num+1);//更改全局变量
-                    foodHolder.numText.setText(Integer.toString(Global_shop_cart.foodlist.get(groupPosition).get(childPosition).getNum()));
+//                    int num=Global_shop_cart.foodlist.get(groupPosition).get(childPosition).getNum();
+//                    Global_shop_cart.foodlist.get(groupPosition).get(childPosition).setNum(num+1);//更改全局变量
+//                    foodHolder.numText.setText(Integer.toString(Global_shop_cart.foodlist.get(groupPosition).get(childPosition).getNum()));
+                    Global_shop_cart.bought_food_add(groupPosition,childPosition);
                     notifyDataSetChanged();
                 }
             });
             foodHolder.button_sub.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (num>=1) {
-                        int num=Global_shop_cart.foodlist.get(groupPosition).get(childPosition).getNum();
-                        Global_shop_cart.foodlist.get(groupPosition).get(childPosition).setNum(num-1);//更改全局变量
-                        foodHolder.numText.setText(Integer.toString(Global_shop_cart.foodlist.get(groupPosition).get(childPosition).getNum()));
-                        notifyDataSetChanged();
-                    }
+                    Global_shop_cart.bought_food_sub(groupPosition,childPosition);
+                    notifyDataSetChanged();
+
                 }
             });
 
@@ -129,17 +125,17 @@ public class Shop_cart_adapter extends BaseExpandableListAdapter {
     }
     @Override
     public Object getGroup(int groupPosition) {
-        return Global_shop_cart.taoCanlist.get(groupPosition);
+        return Global_shop_cart.taoCan_bought_list.get(groupPosition);
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return Global_shop_cart.foodlist.get(groupPosition).get(childPosition);
+        return Global_shop_cart.food_bought_list.get(groupPosition).get(childPosition);
     }
 
     @Override
     public int getGroupCount() {
-        return Global_shop_cart.taoCanlist.size();
+        return Global_shop_cart.taoCan_bought_list.size();
     }
 
     @Override

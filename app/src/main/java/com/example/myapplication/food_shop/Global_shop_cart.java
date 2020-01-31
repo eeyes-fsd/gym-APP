@@ -61,6 +61,7 @@ public class Global_shop_cart {
         int i=Is_repeated(taoCan);
         if (i==-1){//不重复
             taoCan_bought_list.add(taoCan);
+            food_bought_list.add(taoCan.foodList);
         }else {
             taoCan_bought_list.get(i).num_add();
         }
@@ -72,6 +73,7 @@ public class Global_shop_cart {
         taoCan_bought_list.get(position).num_sub();
         if (taoCan_bought_list.get(position).getNum()==0){
             taoCan_bought_list.remove(position);
+            food_bought_list.remove(position);
         }
     }
 
@@ -83,14 +85,23 @@ public class Global_shop_cart {
         }
         return -1;
     }
-    public int get_bought_price(){
+    public static int get_bought_price(){
         int price=0;
         for (TaoCan taoCan:taoCan_bought_list){
-            for (Food food:taoCan.foodList){
-                price=food.getPrice()*food.getNum();
-            }
+            price=price+taoCan.getPrice()*taoCan.getNum();
         }
         return  price;
+    }
+    public static void bought_food_add(int group_position,int child_position){
+        food_bought_list.get(group_position).get(child_position).add_num();
+    }
+    public static void bought_food_sub(int group_position,int child_position){
+        int num=food_bought_list.get(group_position).get(child_position).getNum();
+        if (num==1){
+            food_bought_list.get(group_position).remove(child_position);
+            return;
+        }
+        food_bought_list.get(group_position).get(child_position).setNum(num-1);
     }
 
 }

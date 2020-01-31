@@ -167,8 +167,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
                         Toast.makeText(mcontext,"sadasd",Toast.LENGTH_SHORT).show();
                     }
                 });
-
-                View rootview = LayoutInflater.from(mcontext).inflate(R.layout.test, null);
+                View rootview = LayoutInflater.from(mcontext).inflate(R.layout.activity_recipe, null);
                 popupWindow.showAtLocation(rootview, Gravity.BOTTOM,0,0);
             }
         });

@@ -35,13 +35,11 @@
             android:launchMode="singleTop" />
         <activity android:name=".adress.LocaionActivity" />
 
-
         <activity android:name=".food_shop.Taocan_sp_Activity" />
         <activity android:name=".adress.New_Adress_Activity" />
         <activity android:name=".main_page.Un_sign_inActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

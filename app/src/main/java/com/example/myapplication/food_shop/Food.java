@@ -42,5 +42,7 @@ public class Food {
     private int num;
     private int price;
     private String name;
-
+    public void add_num(){
+        this.num=num+1;
+    }
 }

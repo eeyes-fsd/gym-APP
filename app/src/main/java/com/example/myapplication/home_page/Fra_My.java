@@ -45,7 +45,6 @@ public class Fra_My extends Fragment implements View.OnClickListener{
         textView_exit=getActivity().findViewById(R.id.exit);
         textView_exit.setOnClickListener(this);
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){

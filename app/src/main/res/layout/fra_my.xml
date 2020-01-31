@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_marginLeft="55px"
+    android:layout_marginRight="55px"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RelativeLayout
         android:layout_marginTop="20dp"
@@ -11,61 +15,125 @@
             android:layout_width="100dp"
             android:layout_height="match_parent">
             <TextView
-                android:text="姓名，待补充"
-                android:layout_width="100dp"
+                android:text="姓名"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="3"/>
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:layout_weight="2"/>
             <TextView
-                android:text="电话号码，待补充"
+                android:text="电话号码"
+                android:textSize="16dp"
                 android:layout_width="100dp"
                 android:layout_height="0dp"
                 android:layout_weight="1"/>
-
         </LinearLayout>
         <de.hdodenhof.circleimageview.CircleImageView
-
             android:id="@+id/my_photo"
             android:layout_alignParentRight="true"
             android:src="@drawable/pic_test_1"
             android:layout_width="70dp"
             android:layout_height="70dp" />
-
-
     </RelativeLayout>
+
     <TextView
+        android:layout_marginTop="30dp"
         android:clickable="true"
         android:id="@+id/my_hight_weight"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:textSize="24dp"
+        android:textSize="16dp"
         android:text="我的资料"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <TextView
-        android:clickable="true"
-        android:id="@+id/my_adress"
-        android:layout_marginLeft="10dp"
+    <View
         android:layout_marginTop="20dp"
-        android:textSize="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#22000000"/>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/my_adress"
+        android:textSize="16dp"
         android:text="我的地址"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <TextView
-        android:clickable="true"
-        android:id="@+id/my_connect_us"
-        android:layout_marginLeft="10dp"
+    <View
         android:layout_marginTop="20dp"
-        android:textSize="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#22000000"/>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/my_recipe"
+        android:textSize="16dp"
+        android:text="我的秤食配餐"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#22000000"/>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/my_phone"
+        android:textSize="16dp"
+        android:text="绑定手机号"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#22000000"/>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/my_order"
+        android:textSize="16dp"
+        android:text="订单"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#22000000"/>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/my_connect_us"
+        android:textSize="16dp"
         android:text="联系我们"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <TextView
-        android:clickable="true"
-        android:id="@+id/exit"
-        android:layout_marginLeft="10dp"
+    <View
         android:layout_marginTop="20dp"
-        android:textSize="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#22000000"/>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/exit"
+        android:textSize="16dp"
         android:text="退出"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <View
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#22000000"/>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="#F83A51"
+            android:gravity="center"
+            android:text="推荐给朋友"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:src="@drawable/homepage_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </LinearLayout>

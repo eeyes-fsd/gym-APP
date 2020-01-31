@@ -38,7 +38,7 @@ public class Fra_food extends Fragment implements View.OnClickListener{
     private TextView textView_cst;
     private TaoCan[] taoCans={new TaoCan(R.drawable.pic_test_1,"套餐一"),new TaoCan(R.drawable.pic_text_2,"套餐二"),new TaoCan(R.drawable.pic_test_3,"套三")
             ,new TaoCan(R.drawable.round_pic,"套餐四")};
-    private List<TaoCan> taoCanList=new ArrayList<>();
+//    private List<TaoCan> taoCanList=new ArrayList<>();
     private TaoCanAdapter adapter;
     private PopupWindow popupWindow;
     @Nullable
@@ -54,7 +54,7 @@ public class Fra_food extends Fragment implements View.OnClickListener{
         RecyclerView recyclerView=getView().findViewById(R.id.taocan_recycle);
         GridLayoutManager manager=new GridLayoutManager(getActivity(),2);
         recyclerView.setLayoutManager(manager);
-        adapter=new TaoCanAdapter(taoCanList);
+        adapter=new TaoCanAdapter();
         recyclerView.setAdapter(adapter);
         textView_csd=getView().findViewById(R.id.text_csd);
         textView_csd.setOnClickListener(this);
@@ -64,6 +64,7 @@ public class Fra_food extends Fragment implements View.OnClickListener{
         floatingActionButton.setOnClickListener(this);
         super.onActivityCreated(savedInstanceState);
     }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -83,15 +84,13 @@ public class Fra_food extends Fragment implements View.OnClickListener{
     }
 
     private void Init_2(){
-        if (taoCanList.isEmpty()){
+        if (Global_shop_cart.taoCanlist.isEmpty()){
             for(int i=0;i<10;i++){
                 Random random=new Random();
                 int index=random.nextInt(taoCans.length);
-                taoCanList.add(taoCans[index]);
+                Global_shop_cart.taoCanlist.add(taoCans[index]);
             }
-
         }
-
     }
 //    private void show_shop_cart(){
 //        ExpandableListView expandableListView=getView().findViewById(R.id.shop_cart_elv);

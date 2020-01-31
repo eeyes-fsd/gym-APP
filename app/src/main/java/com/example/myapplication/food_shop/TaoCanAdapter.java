@@ -23,7 +23,7 @@ import java.util.List;
 
 public class TaoCanAdapter extends RecyclerView.Adapter<TaoCanAdapter.ViewHolder> {
     private Context mcontext;
-    private List<TaoCan> mTaoCanlist;
+//    private List<TaoCan> mTaoCanlist;
     static class ViewHolder extends RecyclerView.ViewHolder{
         CardView cardView;
         TextView textView;
@@ -40,8 +40,7 @@ public class TaoCanAdapter extends RecyclerView.Adapter<TaoCanAdapter.ViewHolder
         }
     }
 
-    public TaoCanAdapter(List<TaoCan> mTaoCanlist) {
-        this.mTaoCanlist = mTaoCanlist;
+    public TaoCanAdapter() {
     }
 
     @NonNull
@@ -57,10 +56,9 @@ public class TaoCanAdapter extends RecyclerView.Adapter<TaoCanAdapter.ViewHolder
             public void onClick(View v) {
 //                Toast.makeText(v.getContext(),viewHolder.textView.getText(),Toast.LENGTH_SHORT).show();
                 int postion=viewHolder.getAdapterPosition();
-                TaoCan taoCan=mTaoCanlist.get(postion);
-                //更改要同时两个东西，达到对应关系
-                Global_shop_cart.taoCanlist.add(taoCan);
-                Global_shop_cart.foodlist.add(taoCan.foodList);
+                TaoCan taoCan=Global_shop_cart.taoCanlist.get(postion);
+                //更改要同时两个东西，达到对应关系  这里是添加键
+                Global_shop_cart.bought_add(taoCan);
                 try {
                     Toast.makeText(v.getContext(),Global_shop_cart.taoCanlist.get(Global_shop_cart.taoCanlist.size()-1).getName(),Toast.LENGTH_SHORT).show();
                 }catch (Exception e){
@@ -72,7 +70,7 @@ public class TaoCanAdapter extends RecyclerView.Adapter<TaoCanAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 int postion=viewHolder.getAdapterPosition();
-                TaoCan taoCan=mTaoCanlist.get(postion);
+                TaoCan taoCan=Global_shop_cart.taoCanlist.get(postion);
                 Intent intent=new Intent(mcontext,Taocan_sp_Activity.class);
                 intent.putExtra(Constant.TAOCAN_NAME,taoCan.getName());
                 intent.putExtra(Constant.TAOCAN_IMAGE,taoCan.getImageId());
@@ -84,12 +82,12 @@ public class TaoCanAdapter extends RecyclerView.Adapter<TaoCanAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return mTaoCanlist.size();
+        return Global_shop_cart.taoCanlist.size();
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        TaoCan taoCan=mTaoCanlist.get(position);
+        TaoCan taoCan=Global_shop_cart.taoCanlist.get(position);
         holder.textView.setText(taoCan.getName());
         Glide.with(mcontext).load(taoCan.getImageId()).into(holder.imageView);
     }

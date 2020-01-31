@@ -26,10 +26,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 //    private Button btn_my;
 //    private Button btn_food;
     private BottomNavigationView bottomNavigationView;
+    int judge=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
         fra_homepage=new Fra_homepage();
         fra_my=new Fra_My();
@@ -41,14 +41,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home_page:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.home_ll,fra_homepage).commit();
+                        if (judge!=0){
+                            getSupportFragmentManager().beginTransaction().replace(R.id.home_ll,fra_homepage).commit();
+                            judge=0;
+                        }
 
                         return true;
                     case R.id.my:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.home_ll,fra_my).commit();
+                        if (judge!=1){
+                            getSupportFragmentManager().beginTransaction().replace(R.id.home_ll,fra_my).commit();
+                            judge=1;
+                        }
+
                         return true;
                     case R.id.food:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.home_ll,fra_food).commit();
+                        if (judge!=2){
+                            getSupportFragmentManager().beginTransaction().replace(R.id.home_ll,fra_food).commit();
+                            judge=2;
+                        }
                         return true;
                 }
                 return false;

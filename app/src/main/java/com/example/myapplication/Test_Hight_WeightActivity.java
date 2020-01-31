@@ -47,7 +47,7 @@ public class Test_Hight_WeightActivity extends BaseActivity implements View.OnCl
     private TextView textView_fat_rate;
     private TextView textView_salt_rate;
     private TextView textView_hight;
-    Button button;
+    private Button button;
     private TimePickerView pickerView;
     private TimePickerView pickerView2;
     private TimePickerView pickerView3;
@@ -70,17 +70,18 @@ public class Test_Hight_WeightActivity extends BaseActivity implements View.OnCl
         textView_time_start.setOnClickListener(this);
         textView_gender=findViewById(R.id.healthy_gender);
         textView_gender.setOnClickListener(this);
+
         button=findViewById(R.id.healthy_submit);
         button.setOnClickListener(this);
-        textView_fat_rate.setOnClickListener(this);
+
         textView_fat_rate=findViewById(R.id.fat_rate);
-        textView_salt_rate.setOnClickListener(this);
+        textView_fat_rate.setOnClickListener(this);
+
         textView_salt_rate=findViewById(R.id.salt_rate);
+        textView_salt_rate.setOnClickListener(this);
         textView_hight=findViewById(R.id.my_hight);
         textView_hight.setOnClickListener(this);
-
-        get_data();
-
+//        get_data();
         pickerView =new TimePickerBuilder(this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
@@ -324,8 +325,7 @@ public class Test_Hight_WeightActivity extends BaseActivity implements View.OnCl
 
 
     private void get_data(){//第一次加载时获取服务端用户信息
-
-        Token.judge(this);
+//        Token.judge(this);
         Call call=WebService.GYM_call(get_healthy,Token.access_token,"GET",null);
         MyProgressDialog.CreatProgressDialog(this);
         call.enqueue(new Callback() {
