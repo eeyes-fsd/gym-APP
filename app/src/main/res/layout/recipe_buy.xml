@@ -63,14 +63,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1">
-                <RadioButton
+                <CheckBox
                     android:text="oneasdasdsad"
                     android:background="@drawable/recipe_btn_sixuaner"
                     android:button="@null"
                     android:id="@+id/taocan_extra_1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
-                <RadioButton
+                <CheckBox
                     android:layout_marginLeft="5dp"
                     android:text="twoasdasdasd"
                     android:background="@drawable/recipe_btn_sixuaner"
@@ -87,14 +87,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1">
-                <RadioButton
+                <CheckBox
                     android:text="threeasdasdasd"
                     android:background="@drawable/recipe_btn_sixuaner"
                     android:button="@null"
                     android:id="@+id/taocan_extra_3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
-                <RadioButton
+                <CheckBox
                     android:text="fourasdasdasd"
                     android:layout_marginLeft="5dp"
                     android:background="@drawable/recipe_btn_sixuaner"

@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Global_shop_cart {
+
+//    需要的食品列表包括
+//    1.所有套餐和所有事物（套餐对应的食物）需要用到的地方有
+//    2.以购买的东西
+//SD
+
     public static List<List<Food>> foodlist=new ArrayList<>();//所有食物
     public static List<TaoCan> taoCanlist=new ArrayList<>();//所有套餐
     public static List<TaoCan> taoCan_search_list=new ArrayList<>();//展示的套餐
@@ -56,6 +62,10 @@ public class Global_shop_cart {
             }
         }
     }
+    public static  void bought_add_food(TaoCan taoCan,Food food){
+        //先判断是否food是否在里面,如果是，则数量+1，
+
+    }
 
     public static void bought_add(TaoCan taoCan){
         int i=Is_repeated(taoCan);
@@ -76,7 +86,6 @@ public class Global_shop_cart {
             food_bought_list.remove(position);
         }
     }
-
     public static int Is_repeated(TaoCan taoCan){
         for (int i=0;i<taoCan_bought_list.size();i++){//搜索购买列表
             if (taoCan_bought_list.get(i).getName().equals(taoCan.getName())){

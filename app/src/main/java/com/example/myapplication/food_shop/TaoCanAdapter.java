@@ -25,14 +25,12 @@ public class TaoCanAdapter extends RecyclerView.Adapter<TaoCanAdapter.ViewHolder
     private Context mcontext;
 //    private List<TaoCan> mTaoCanlist;
     static class ViewHolder extends RecyclerView.ViewHolder{
-        CardView cardView;
         TextView textView;
         ImageView imageView;
         Button button;
         View mview;
         public ViewHolder(View view) {
             super(view);
-            cardView=(CardView) view;
             textView=view.findViewById(R.id.taocan_name);
             imageView=view.findViewById(R.id.taocan_pic);
             button=view.findViewById(R.id.taocan_add);
@@ -70,10 +68,11 @@ public class TaoCanAdapter extends RecyclerView.Adapter<TaoCanAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 int postion=viewHolder.getAdapterPosition();
-                TaoCan taoCan=Global_shop_cart.taoCanlist.get(postion);
+//                TaoCan taoCan=Global_shop_cart.taoCanlist.get(postion);
                 Intent intent=new Intent(mcontext,Taocan_sp_Activity.class);
-                intent.putExtra(Constant.TAOCAN_NAME,taoCan.getName());
-                intent.putExtra(Constant.TAOCAN_IMAGE,taoCan.getImageId());
+                intent.putExtra("position",postion);
+//                intent.putExtra(Constant.TAOCAN_NAME,taoCan.getName());
+//                intent.putExtra(Constant.TAOCAN_IMAGE,taoCan.getImageId());
                 mcontext.startActivity(intent);
             }
         });

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -23,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Constant;
 import com.example.myapplication.R;
+import com.example.myapplication.adress.Change_adress_Activity;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -61,7 +63,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (mcontext==null){
             mcontext=parent.getContext();
-
         }
         View view= LayoutInflater.from(mcontext).inflate(R.layout.recipe_item,parent,false);
         ViewHolder viewHolder=new ViewHolder(view);
@@ -73,9 +74,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         //holder.imageView_img.setImageResource(taoCan.getImageId());
         holder.textView_name.setText(taoCan.getName());
         holder.textView_shicai.setText(taoCan.getDescription());
-        Log.d("SWB", "onBindViewHolder: "+taoCan.getHttp_pic());
+
         Request request=new Request.Builder().url(taoCan.getHttp_pic()).build();
-        OkHttpClient client=new OkHttpClient();
+        final OkHttpClient client=new OkHttpClient();
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -106,64 +107,70 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
                 View contentView = LayoutInflater.from(mcontext).inflate(R.layout.recipe_buy,null);
                 popupWindow=new PopupWindow(contentView, RadioGroup.LayoutParams.MATCH_PARENT, RadioGroup.LayoutParams.WRAP_CONTENT);
                 popupWindow.setContentView(contentView);
-//                final int check[] ={0,0,0,0};
+                checkBoxes[0]=contentView.findViewById(R.id.taocan_extra_1);
+                checkBoxes[0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (checkBoxes[0].isChecked()){
+                            count++;
+                            array[0]=1;
+                            check_1();
+                        }else {
+                            count--;
+                            array[0]=0;
+                            check_2();
+                        }
+                    }
+                });
+                checkBoxes[1]=contentView.findViewById(R.id.taocan_extra_2);
+                checkBoxes[1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (checkBoxes[1].isChecked()){
+                            count++;
+                            array[1]=1;
+                            check_1();
+                        }else {
+                            count--;
+                            array[1]=0;
+                            check_2();
+                        }
+                    }
+                });
+                checkBoxes[2]=contentView.findViewById(R.id.taocan_extra_3);
+                checkBoxes[2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (checkBoxes[2].isChecked()){
+                            count++;
+                            array[2]=1;
+                            check_1();
+                        }else {
+                            count--;
+                            array[2]=0;
+                            check_2();
+                        }
+                    }
+                });
+                checkBoxes[3]=contentView.findViewById(R.id.taocan_extra_4);
+                checkBoxes[3].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (checkBoxes[3].isChecked()){
+                            count++;
+                            array[3]=1;
+                            check_1();
+                        }else {
+                            count--;
+                            array[3]=0;
+                            check_2();
+                        }
+                    }
+                });
                 Button button=contentView.findViewById(R.id.recipe_buy_btn);
-                RadioButton radioButton=contentView.findViewById(R.id.taocan_extra_1);
-                radioButton.setText(taoCan.getName());
-//                RadioGroup radioGroup=contentView.findViewById(R.id.recipe_radio_group);
-//                final RadioButton radioButton1=contentView.findViewById(R.id.taocan_extra_1);
-//                final RadioButton radioButton2=contentView.findViewById(R.id.taocan_extra_2);
-//                final RadioButton radioButton3=contentView.findViewById(R.id.taocan_extra_3);
-//                final RadioButton radioButton4=contentView.findViewById(R.id.taocan_extra_4);
-//                radioButton1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                    @Override
-//                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//
-//                    }
-//                });
-//                radioButton2.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        int n=check[0]+check[1]+check[2]+check[3];
-//                        if (!radioButton2.isChecked()&&n<2){//如果未被选中
-//                            check[1]=1;
-//                            radioButton2.setChecked(true);
-//                        }else {//未被选中
-//                            check[1]=0;
-//                            radioButton2.setChecked(false);
-//                        }
-//                    }
-//                });
-//                radioButton3.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        int n=check[0]+check[1]+check[2]+check[3];
-//                        if (!radioButton3.isChecked()&&n<2){//如果未被选中
-//                            check[2]=1;
-//                            radioButton3.setChecked(true);
-//                        }else {//未被选中
-//                            check[2]=0;
-//                            radioButton3.setChecked(false);
-//                        }
-//                    }
-//                });
-//                radioButton4.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        int n=check[0]+check[1]+check[2]+check[3];
-//                        if (!radioButton4.isChecked()&&n<2){//如果未被选中
-//                            check[3]=1;
-//                            radioButton4.setChecked(true);
-//                        }else {//未被选中
-//                            check[3]=0;
-//                            radioButton4.setChecked(false);
-//                        }
-//                    }
-//                });
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //int n=check[0]+check[1]+check[2]+check[3];
                         Toast.makeText(mcontext,"sadasd",Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -172,7 +179,25 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             }
         });
     }
-
+    int count=0;
+    private CheckBox[] checkBoxes=new CheckBox[4];
+    private int[] array={0,0,0,0};
+    void check_1(){
+        if (count==2){//有两个被点击时，取消另外两个的点击
+            for (int i=0;i<array.length;i++){
+                if (array[i]==0){
+                    checkBoxes[i].setClickable(false);
+                }
+            }
+        }
+    }
+    void check_2(){
+        if (count==1){//如果点击取消后有一个为1，则都可点击
+            for (CheckBox checkBox:checkBoxes){
+                checkBox.setClickable(true);
+            }
+        }
+    }
     @Override
     public int getItemCount() {
         return taoCanList.size();

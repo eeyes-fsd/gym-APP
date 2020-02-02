@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.shehuan.niv.NiceImageView
+        app:corner_radius="30dp"
+        android:id="@+id/order_content_pic"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+    <RelativeLayout
+        android:layout_weight="2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+        <TextView
+            android:text="奥尔良鸡肉套餐"
+            android:layout_alignParentTop="true"
+            android:id="@+id/order_content_name_taocan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="熟食*2"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/order_content_name_food_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>

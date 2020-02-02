@@ -106,7 +106,6 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
     void get_data(){
         if (Global_shop_cart.taoCanlist.isEmpty()){//当数据为空时获得全部数据
 
-
             //Token.judge(this);
             //Call call = WebService.GYM_call(TaoCan.get_all_recipe,Token.access_token,"GET",null);
 

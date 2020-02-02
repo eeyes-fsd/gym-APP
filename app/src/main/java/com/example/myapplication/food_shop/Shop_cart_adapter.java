@@ -18,7 +18,6 @@ public class Shop_cart_adapter extends BaseExpandableListAdapter {
     public Shop_cart_adapter(Context mcontext) {
         this.mcontext = mcontext;
     }
-
      static class TaocanHolder{
         private TextView taocan_name;
         private TextView taocan_num;

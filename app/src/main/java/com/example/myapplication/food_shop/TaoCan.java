@@ -51,7 +51,6 @@ public class TaoCan {
         this.num=1;
     }
 
-
     public void num_add(){
         num=num+1;
     }

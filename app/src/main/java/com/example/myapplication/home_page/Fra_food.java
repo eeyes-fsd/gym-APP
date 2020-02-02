@@ -1,22 +1,19 @@
 package com.example.myapplication.home_page;
 
-import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.PopupWindow;
+import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.MainActivity;
@@ -24,13 +21,10 @@ import com.example.myapplication.R;
 import com.example.myapplication.food_shop.Food;
 import com.example.myapplication.food_shop.Global_shop_cart;
 import com.example.myapplication.food_shop.Shop_cart_adapter;
-import com.example.myapplication.food_shop.Shop_cart_window;
 import com.example.myapplication.food_shop.TaoCan;
 import com.example.myapplication.food_shop.TaoCanAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Fra_food extends Fragment implements View.OnClickListener{
@@ -40,11 +34,28 @@ public class Fra_food extends Fragment implements View.OnClickListener{
             ,new TaoCan(R.drawable.round_pic,"套餐四")};
 //    private List<TaoCan> taoCanList=new ArrayList<>();
     private TaoCanAdapter adapter;
-    private PopupWindow popupWindow;
+    private PopupWindow popupWindow=null;
+    private View rootview;
+    private View contentView;
+    private ExpandableListView expandableListView;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fra_food,container,false);
+        contentView = LayoutInflater.from(getActivity()).inflate(R.layout.shop_cart,null);
+        expandableListView=contentView.findViewById(R.id.shop_cart_elv);
+        popupWindow=new PopupWindow(contentView, RadioGroup.LayoutParams.MATCH_PARENT, RadioGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow.setContentView(contentView);
+        rootview = LayoutInflater.from(getActivity()).inflate(R.layout.activity_taocan_sp_, null);
+        MainActivity.MyTouchListener myTouchListener=new MainActivity.MyTouchListener() {
+            @Override
+            public void onTouchEvent(MotionEvent event) {
+                    if (popupWindow.isShowing()&&popupWindow!=null){
+                        popupWindow.dismiss();
+                    }
+            }
+        };
+        ((MainActivity)this.getActivity()).registerMyTouchListener(myTouchListener);
         return view;
     }
     @Override
@@ -63,14 +74,18 @@ public class Fra_food extends Fragment implements View.OnClickListener{
         FloatingActionButton floatingActionButton= getView().findViewById(R.id.shop_cart);
         floatingActionButton.setOnClickListener(this);
         super.onActivityCreated(savedInstanceState);
-    }
 
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.shop_cart:
-               // show_shop_cart();
-                startActivity(new Intent(getActivity(), Shop_cart_window.class));
+                Shop_cart_adapter shop_cart_adapter=new Shop_cart_adapter(getActivity());
+                expandableListView.setAdapter(shop_cart_adapter);
+                for (int i=0;i<Global_shop_cart.taoCan_bought_list.size();i++){
+                    expandableListView.expandGroup(i);
+                }
+                popupWindow.showAtLocation(rootview, Gravity.BOTTOM,0,0);
                 break;
             case R.id.text_csd:
                 textView_cst.setTextColor(getResources().getColor(R.color.food_gray));
@@ -92,6 +107,8 @@ public class Fra_food extends Fragment implements View.OnClickListener{
             }
         }
     }
+
+
 //    private void show_shop_cart(){
 //        ExpandableListView expandableListView=getView().findViewById(R.id.shop_cart_elv);
 //        Shop_cart_adapter shop_cart_adapter=new Shop_cart_adapter(getContext());

@@ -23,9 +23,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data android:name="com.amap.api.v2.apikey" android:value="8526e0f938c19daeb77163797eba2be9"></meta-data>
-        <service android:name="com.amap.api.location.APSService"></service>
-        <activity android:name=".pay.Choose_AdressActivity"></activity>
+        <activity android:name=".order.MyOrderActivity"></activity>
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="8526e0f938c19daeb77163797eba2be9" />
+
+        <service android:name="com.amap.api.location.APSService" />
+
+        <activity android:name=".pay.Choose_AdressActivity" />
         <activity android:name=".pay.PayActivity" />
         <activity android:name=".adress.Change_adress_Activity" />
         <activity android:name=".food_shop.RecipeActivity" />
@@ -34,21 +40,18 @@
             android:exported="true"
             android:launchMode="singleTop" />
         <activity android:name=".adress.LocaionActivity" />
-
         <activity android:name=".food_shop.Taocan_sp_Activity" />
         <activity android:name=".adress.New_Adress_Activity" />
         <activity android:name=".main_page.Un_sign_inActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".adress.AdressActivity" />
         <activity android:name=".Test_Hight_WeightActivity" />
         <activity android:name=".MainActivity" />
-        <activity
-            android:name=".food_shop.Shop_cart_window"
-            android:theme="@style/MyDialogStyleBottom" />
     </application>
 
 </manifest>
