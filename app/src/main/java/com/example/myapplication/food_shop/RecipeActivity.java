@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
+import com.example.myapplication.web.MyProgressDialog;
 import com.example.myapplication.web.Token;
 import com.example.myapplication.web.WebService;
 import com.google.gson.Gson;
@@ -21,6 +22,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import okhttp3.Call;
@@ -37,6 +39,7 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
     private List<TaoCan> taoCanList=new ArrayList<>();
     private TextView textView_ygb;
     private TextView textView_all;
+    private List<TaoCan> taoCanList_bought_recipe=new ArrayList<>();//已购买的配餐
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,13 +84,16 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.text_all:
+            case R.id.text_all://全部
                 textView_ygb.setTextColor(getResources().getColor(R.color.food_gray));
                 textView_all.setTextColor(getResources().getColor(R.color.food_black));
                 break;
-            case R.id.text_ygb:
+            case R.id.text_ygb://已购买
                 textView_all.setTextColor(getResources().getColor(R.color.food_gray));
                 textView_ygb.setTextColor(getResources().getColor(R.color.food_black));
+                if (taoCanList_bought_recipe.isEmpty()){
+                    get_bought();
+                }
                 break;
                 default:
                     break;
@@ -103,13 +109,9 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
         }
         return super.dispatchTouchEvent(ev);
     }
-    void get_data(){
-        if (Global_shop_cart.taoCanlist.isEmpty()){//当数据为空时获得全部数据
-
-            //Token.judge(this);
-            //Call call = WebService.GYM_call(TaoCan.get_all_recipe,Token.access_token,"GET",null);
-
-            Request request=new Request.Builder().url("http://10.0.2.2/get_recipe.json").build();
+    void get_data(){//这个时候获得为全部套餐
+        if (taoCanList.isEmpty()){//当数据为空时获得全部数据
+            final Request request=new Request.Builder().url("http://10.0.2.2/get_recipe.json").build();
             OkHttpClient client=new OkHttpClient();
             Call call=client.newCall(request);
             Log.d("SWBSWBSWB", "孙文冰孙文冰");
@@ -140,8 +142,7 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
                             taoCan.setName(jsonObject.getString("name"));
                             taoCan.setId(jsonObject.getInt("id"));
                             taoCan.setDescription(jsonObject.getString("description"));
-                            taoCan.setHttp_pic(jsonObject.getString("cover"));
-
+                            taoCan.setCover(jsonObject.getString("cover"));
                             taoCanList.add(taoCan);
                         }
                     }catch (Exception e){
@@ -149,25 +150,56 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
                     }
                 }
             });
+//            Token.judge(this);
+//            MyProgressDialog.CreatProgressDialog(this);
+//            Call call_ = WebService.GYM_call(TaoCan.get_all_recipe,Token.access_token,"GET",null);
+//
+//            call_.enqueue(new Callback() {
+//                @Override
+//                public void onFailure(Call call, IOException e) {
+//                    MyProgressDialog.Diss_progress_dialog();
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Toast.makeText(RecipeActivity.this, "网络连接失败", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                }
+//
+//                @Override
+//                public void onResponse(Call call, Response response) throws IOException {
+//                    MyProgressDialog.Diss_progress_dialog();
+//                    Parse(response.body().string(),1);
+//                }
+//            });
         }
     }
-    //    private void show(){
-//        View contentView = LayoutInflater.from(this).inflate(R.layout.recipe_buy,null);
-//        popupWindow=new PopupWindow(contentView,RadioGroup.LayoutParams.MATCH_PARENT, RadioGroup.LayoutParams.WRAP_CONTENT);
-//        popupWindow.setContentView(contentView);
-//        View rootview = LayoutInflater.from(this).inflate(R.layout.test, null);
-//        popupWindow.showAtLocation(rootview, Gravity.BOTTOM,0,0);
-//    }
-
-//    @Override
-//    public  boolean onTouchEvent(MotionEvent event) {
-////        try {
-////            Toast.makeText(this,"sad",Toast.LENGTH_SHORT).show();
-////            adapter.popupWindow.dismiss();
-//        Log.d("SWB", "点击成功");
-////        }catch (Exception e){
-////            e.printStackTrace();
-////        }
-//        return true;
-//    }
+    private void get_bought(){
+//        Token.judge(this);
+//        Call call=WebService.GYM_call(TaoCan.get_already_bought,Token.access_token,"GET",null);
+//        MyProgressDialog.CreatProgressDialog(this);
+//        call.enqueue(new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                MyProgressDialog.Diss_progress_dialog();
+//                Toast.makeText(RecipeActivity.this, "网络连接失败", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                MyProgressDialog.Diss_progress_dialog();
+//                Parse(response.body().string(),2);
+//            }
+//        });
+    }
+    private void Parse(String s,int a){
+        TaoCan[] taoCans=new Gson().fromJson(s,TaoCan[].class);
+        if (a==1){
+            taoCanList.addAll(Arrays.asList(taoCans));
+            adapter.notifyDataSetChanged();
+        }else{
+            taoCanList_bought_recipe.addAll(Arrays.asList(taoCans));
+            //这里是一个新的适配器的notify
+        }
+    }
 }

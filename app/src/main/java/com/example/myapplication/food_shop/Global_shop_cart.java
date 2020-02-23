@@ -6,12 +6,15 @@ import java.util.List;
 public class Global_shop_cart {
 
 //    需要的食品列表包括
-//    1.所有套餐和所有事物（套餐对应的食物）需要用到的地方有
-//    2.以购买的东西
-//SD
+//    1.所有套餐和所有食物（套餐对应的食物）需要用到的地方是食堂， 加一个全局变量为全部的食谱
+//    2.以购买的套餐和食谱，分别用于结算购物车的货物和显示已购买食谱
+//    3.
 
-    public static List<List<Food>> foodlist=new ArrayList<>();//所有食物
-    public static List<TaoCan> taoCanlist=new ArrayList<>();//所有套餐
+
+    public static List<List<Food>> foodlist=new ArrayList<>();//所有食物 食堂
+    public static List<TaoCan> taoCanlist=new ArrayList<>();//所有套餐 食堂
+    public static List<TaoCan> taoCanList_recipe=new ArrayList<>();//配餐
+    public static List<List<Food>> foodlist_recipe=new ArrayList<>();//配餐
     public static List<TaoCan> taoCan_search_list=new ArrayList<>();//展示的套餐
     public static List<List<Food>> food_search_list=new ArrayList<>();//展示的食物
     public static List<TaoCan> taoCan_bought_list=new ArrayList<>();//展示的套餐
@@ -30,17 +33,19 @@ public class Global_shop_cart {
         for(int i=0;i<taoCanlist.size();i++){
             taoCanlist.get(i).isAdded=false;
         }
-    }
-    private static void init(){//清空搜索列表
-        clear__all();
         taoCan_search_list.clear();
         food_search_list.clear();
     }
-
     public static void search(String s){
         //s是食谱名，或者食材名
         // 先搜索套餐名
-        init();
+        clear__all();
+        if (s.equals("")){//这个说明输入为空，返回所有的
+            taoCan_bought_list.addAll(taoCanlist);
+            food_search_list.addAll(foodlist);
+            return;
+        }
+
         for (int i=0;i<taoCanlist.size();i++){
             if (s.equals(taoCanlist.get(i).getName())){
                 taoCanlist.get(i).isAdded=true;

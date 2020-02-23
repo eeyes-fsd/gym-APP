@@ -14,9 +14,11 @@ public class TaoCan {
     public static final String get_all_recipe="/recipes";
     public static final String get_today_recommend="/recipes/today";
 
+    //这个东西是套餐和食谱的结合，包括的属性为
+    //id 描述 名字
     private int id;
     private String description;
-    private String http_pic;
+    private String cover;
     public boolean isAdded;
     private int num;//数量
     public List<Food> foodList=new ArrayList<>();
@@ -39,12 +41,12 @@ public class TaoCan {
         this.description = description;
     }
 
-    public String getHttp_pic() {
-        return http_pic;
+    public String getCover() {
+        return cover;
     }
 
-    public void setHttp_pic(String http_pic) {
-        this.http_pic = http_pic;
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 
     public TaoCan(){
@@ -64,15 +66,12 @@ public class TaoCan {
         this.num=1;
         this.isAdded=false;
     }
-
     public int getImageId() {
         return imageId;
     }
-
     public void setImageId(int imageId) {
         this.imageId = imageId;
     }
-
     public String getName() {
         return name;
     }
@@ -81,15 +80,10 @@ public class TaoCan {
         this.name = name;
     }
 
-
-
     public int getNum() {
         return num;
     }
 
-    public void setNum(int num) {
-        this.num = num;
-    }
 
     public int getPrice(){
         int sum=0;
@@ -97,8 +91,5 @@ public class TaoCan {
             sum=sum+foodList.get(i).getPrice()*foodList.get(i).getNum();
         }
         return sum;
-    }
-    public void add_food(Food food){
-        foodList.add(food);
     }
 }

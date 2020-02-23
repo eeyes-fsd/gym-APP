@@ -49,7 +49,7 @@ public class TaocanSpRawTextAdapter extends RecyclerView.Adapter<TaocanSpRawText
         String s=list.get(position);
         int a=s.indexOf("+");
         holder.textView_name.setText(s.substring(0,a));
-        holder.textView_weight.setText(s.substring(a+1,s.length()-1));
+        holder.textView_weight.setText(s.substring(a+1)+"g");
     }
 
     @Override

@@ -142,7 +142,6 @@ public class Test_Hight_WeightActivity extends BaseActivity implements View.OnCl
                         jsonObject.put("fat_rate",fat_rate);
                         jsonObject.put("salt_rate",salt_rate);
                         jsonObject.put("work_time",work_time);
-
                         Token.judge(this);
                         Call call = WebService.GYM_call(post_save_healthy, Token.access_token,"POST",jsonObject);
                         MyProgressDialog.CreatProgressDialog(this);
@@ -321,8 +320,6 @@ public class Test_Hight_WeightActivity extends BaseActivity implements View.OnCl
         String dateStr = sdf.format(date);
         return dateStr;
     }
-
-
 
     private void get_data(){//第一次加载时获取服务端用户信息
 //        Token.judge(this);

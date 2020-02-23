@@ -24,20 +24,32 @@ import com.example.myapplication.Constant;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.food_shop.RecipeActivity;
+import com.example.myapplication.web.Token;
 import com.example.myapplication.web.WebService;
+import com.google.gson.JsonObject;
 
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
+
 public class Fra_homepage extends Fragment implements View.OnClickListener{
     private Button button_test;
     private Food_pic_adapter food_pic_adapter;
     private ViewPager viewPager;
+    private Food_pic_adapter food_pic_adapter_recipe;
+    private ViewPager viewPager_today;
     //private List<Bitmap> list;
-    private List<Integer> list;
+    private List<String> list=new ArrayList<>();
+    private List<String> list_today=new ArrayList<>();
 //    Handler handler=new Handler(){//图片处理
 //        @Override
 //        public void handleMessage(@NonNull Message msg) {
@@ -52,12 +64,14 @@ public class Fra_homepage extends Fragment implements View.OnClickListener{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fra_homepage,container,false);
         viewPager=view.findViewById(R.id.food_pic);
-        list=new ArrayList<>();
+        viewPager_today=view.findViewById(R.id.food_today_recipe);
         //button_test=view.findViewById(R.id.measure);
         //button_test.setOnClickListener(this);
-        Init_pic();
+       // Init_pic();
         food_pic_adapter=new Food_pic_adapter(getActivity(),list);
+        food_pic_adapter_recipe=new Food_pic_adapter(getActivity(),list_today);
         viewPager.setAdapter(food_pic_adapter);
+        viewPager_today.setAdapter(food_pic_adapter_recipe);
         viewPager.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,9 +83,9 @@ public class Fra_homepage extends Fragment implements View.OnClickListener{
     }
 
     private void Init_pic(){
-        list.add(R.drawable.pic_text_2);
-        list.add(R.drawable.pic_test_3);
-        list.add(R.drawable.pic_test_1);
+//        list.add(R.drawable.pic_text_2);
+//        list.add(R.drawable.pic_test_3);
+//        list.add(R.drawable.pic_test_1);
 
 //        Thread thread=new Thread(new Runnable() {
 //            @Override
@@ -101,9 +115,48 @@ public class Fra_homepage extends Fragment implements View.OnClickListener{
 //            }
 //        });
 //        thread.start();
+        Token.judge(getActivity());
+        Call call=WebService.GYM_call("/recipes/new?count=10&page=2",Token.access_token,"GET",null);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), "网络连接失败，获取上新推荐失败", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
 
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String s=response.body().string();
+            }
+        });
     }
 
+
+
+    private void Init_today_recipe(){
+        Token.judge(getActivity());
+        Call call=WebService.GYM_call("/recipes/today",Token.access_token,"GET",null);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), "网络连接失败，获取今日推荐失败", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String s=response.body().string();
+            }
+        });
+    }
     @Override
     public void onClick(View v) {
         //this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1
@@ -122,5 +175,36 @@ public class Fra_homepage extends Fragment implements View.OnClickListener{
                 }
                 break;
         }
+    }
+    private void Init_today(){
+
+    }
+    private void Init_new_recipe(){
+        //今日推荐
+        Token.judge(getActivity());
+        Call call=WebService.GYM_call("/recipes/today",Token.access_token,"GET",null);
+
+    }
+    private void Init_get_intake(){
+        Token.judge(getActivity());
+        Call call=WebService.GYM_call("/health/intake",Token.access_token,"GET",null);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Toast.makeText(getActivity(), "获取摄入信息失败", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String s=response.body().string();
+                try {
+                    JSONObject jsonObject=new JSONObject(s);
+
+                }catch (Exception e){
+
+                }
+
+            }
+        });
     }
 }

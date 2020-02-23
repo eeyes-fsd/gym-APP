@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Constant;
@@ -15,6 +17,8 @@ import com.example.myapplication.adress.AdressActivity;
 import com.example.myapplication.web.MyProgressDialog;
 import com.example.myapplication.web.WebService;
 import com.google.gson.Gson;
+
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -27,19 +31,29 @@ import okhttp3.Response;
 public class Choose_AdressActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private         Pay_Adress_Adapter pay_adress_adapter;
+    private TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose__adress);
+        textView=findViewById(R.id.pay_adress_hide);
         Init();
+        judge();
         recyclerView=findViewById(R.id.pay_adress);
         pay_adress_adapter=new Pay_Adress_Adapter();
         pay_adress_adapter.setAdressActivity(this);
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this);
         recyclerView.setAdapter(pay_adress_adapter);
         recyclerView.setLayoutManager(layoutManager);
+
     }
-    void Init(){
+    private void judge(){
+            int count=Constant.list.size();
+            if (count!=0){//如果地址个数为0，则显示该文本
+                textView.setVisibility(View.GONE);
+            }else textView.setVisibility(View.VISIBLE);
+    }
+    private void Init(){
         if(Constant.list.size()==0){
             OkHttpClient client=new OkHttpClient();
             Request request=new  Request.Builder().url("http://10.0.2.2/get_data.json").build();

@@ -3,27 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_marginRight="15dp"
+    android:layout_marginLeft="15dp"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".pay.PayActivity">
+    tools:context=".order.OrderSpActivity">
     <ScrollView
         android:layout_weight="11"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="match_parent">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:layout_margin="20dp"
-                android:text="确认订单"
+                android:text="订单已完成"
                 android:textStyle="bold"
                 android:textSize="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
                 android:text="选择地址"
-                android:id="@+id/pay_choose"
+                android:id="@+id/order_sp_choose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <LinearLayout
@@ -47,7 +47,7 @@
                         android:layout_height="match_parent">
                         <TextView
                             android:textStyle="bold"
-                            android:id="@+id/pay_adress_name_sex"
+                            android:id="@+id/order_adress_name_sex"
                             android:text="姓名+性别"
                             android:layout_width="wrap_content"
                             android:textSize="18dp"
@@ -67,7 +67,7 @@
                                 android:layout_height="30dp" />
                             <TextView
                                 android:textSize="18dp"
-                                android:id="@+id/pay_adress_tel"
+                                android:id="@+id/order_sp_adress_tel"
                                 android:layout_marginLeft="10dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="30dp"
@@ -85,7 +85,7 @@
                             <TextView
                                 android:layout_marginLeft="10dp"
                                 android:textSize="18dp"
-                                android:id="@+id/pay_adress_ar"
+                                android:id="@+id/order_sp_adress_ar"
                                 android:layout_width="match_parent"
                                 android:layout_height="30dp"
                                 android:text="地址"/>
@@ -100,56 +100,60 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/pay_recycle"
+                    android:id="@+id/order_sp_recycle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 </androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
             <LinearLayout
-                android:background="@drawable/round_little_white"
                 android:orientation="vertical"
-                android:layout_margin="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:text="支付方式"
                     android:textStyle="bold"
-                    android:textSize="18dp"
-                    android:layout_width="wrap_content"
+                    android:text="订单信息"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-                <RadioGroup
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <RadioButton
-                        android:text="微信支付"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:text="订单号码"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
-                </RadioGroup>
+                    <TextView
+                        android:layout_alignParentEnd="true"
+                        android:text="56156135165"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="下单时间"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_alignParentEnd="true"
+                        android:text="2019.15.15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="支付手段"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_alignParentEnd="true"
+                        android:text="微信支付"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
-    <RelativeLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-        <TextView
-            android:id="@+id/pay_text"
-            android:text="待支付￥"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_toEndOf="@id/pay_text"
-            android:text="0"
-            android:id="@+id/pay_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
-            android:layout_alignParentEnd="true"
-            android:id="@+id/pay_submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="提交订单" />
-    </RelativeLayout>
 </LinearLayout>

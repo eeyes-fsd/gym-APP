@@ -31,7 +31,7 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="300dp">
+                android:layout_height="250dp">
                 <LinearLayout
                     android:clipChildren="false"
                     android:orientation="horizontal"
@@ -45,7 +45,7 @@
                         android:layout_width="match_parent"
                         android:layout_marginLeft="30dp"
                         android:layout_marginRight="30dp"
-                        android:layout_height="wrap_content">
+                        android:layout_height="200dp">
                     </androidx.viewpager.widget.ViewPager>
                 </LinearLayout>
             </LinearLayout>
@@ -172,13 +172,21 @@
                     android:layout_marginTop="30dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp">
+                    android:layout_height="wrap_content">
                     <TextView
                         android:textStyle="bold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="今日食谱"
                         android:textSize="24dp"/>
+                    <androidx.viewpager.widget.ViewPager
+                        android:clipChildren="false"
+                        android:id="@+id/food_today_recipe"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_height="200dp">
+                    </androidx.viewpager.widget.ViewPager>
                     <LinearLayout
                         android:layout_marginTop="5dp"
                         android:layout_width="match_parent"

@@ -58,7 +58,7 @@ import okhttp3.Response;
 public class AdressActivity extends BaseActivity implements View.OnClickListener{
     private int count=0;
     private TextView textView;
-    private Button button;
+    private TextView textView_btn;
     private RecyclerView recyclerView;
     private static final String get_adress_list="/addresses";
     private static final String post_new_adress="/addresses";
@@ -72,9 +72,8 @@ public class AdressActivity extends BaseActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adress);
         textView=findViewById(R.id.adress_hide);
-        button=findViewById(R.id.adress_new);
-        button=findViewById(R.id.adress_new);
-        button.setOnClickListener(this);
+        textView_btn=findViewById(R.id.adress_new);
+        textView_btn.setOnClickListener(this);
         recyclerView=findViewById(R.id.recycle_adress);
         Init_adress();
         judge();
@@ -85,10 +84,6 @@ public class AdressActivity extends BaseActivity implements View.OnClickListener
         recyclerView.setAdapter(adapter);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
     void Init_adress(){//这里安放的是请求功能函数
         if(Constant.list.size()==0){
             OkHttpClient client=new OkHttpClient();
@@ -121,11 +116,33 @@ public class AdressActivity extends BaseActivity implements View.OnClickListener
                 }
             });
         }
+
+        //初始化地址列表,初始化成功就要进行数据分析，初始化失败用本地的地址
+//        Call call=WebService.GYM_call(get_adress_list,Token.access_token,"GET",null);
+//        MyProgressDialog.CreatProgressDialog(this);
+//        call.enqueue(new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                MyProgressDialog.Diss_progress_dialog();
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Toast.makeText(AdressActivity.this, "网络连接失败", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                MyProgressDialog.Diss_progress_dialog();
+//                String respdata=response.body().string();
+//                ParseJson(WebService.getJsonStrFromNetData(respdata));
+//            }
+//        });
     }
     void New_adress(){
         Intent intent=new Intent(AdressActivity.this,New_Adress_Activity.class);
         startActivityForResult(intent, Constant.NEW_ADRESS);//请求码
-        Log.d("sadfsadadasdsad", Constant.list.size()+" asdasd");
     }
     void ParseJson(String str){
         try {
@@ -143,8 +160,6 @@ public class AdressActivity extends BaseActivity implements View.OnClickListener
 //                Log.d("AdressActivity",jsonObject.getString("name")+"大苏打的暗示打算读阿斯顿阿三打是打算撒旦");
 //                Constant.list.add(adress);
 //            }
-
-
             Adress[] adress=new Gson().fromJson(str,Adress[].class);
             for (Adress adress1:adress){
                 Constant.list.add(adress1);
@@ -180,36 +195,39 @@ public class AdressActivity extends BaseActivity implements View.OnClickListener
                     final String menpai=data.getStringExtra("menpai");
                     final String adress=data.getStringExtra("adress");
                     final String gender=data.getStringExtra("gender");
+
                     Adress adress1=new Adress(adress,gender,tel,name);
+                    adress1.setId(Constant.list.size()+1);
                     Constant.list.add(adress1);
                     count=Constant.list.size();
                     judge();
-                    JSONObject jsonObject=new JSONObject();
+//                    JSONObject jsonObject=new JSONObject();
                     adapter.notifyDataSetChanged();
-                    try {
-                        jsonObject.put("adress",adress);
-                        jsonObject.put("name",name);
-                        jsonObject.put("phone",tel);
-                        jsonObject.put("gender",gender);
-                        Call call=WebService.GYM_call(post_new_adress, Token.access_token,"POST",jsonObject);
-                        call.enqueue(new Callback() {
-                            @Override
-                            public void onFailure(Call call, IOException e) {
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(AdressActivity.this,"网络有误，上传失败，请检查网络",Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
-                            @Override
-                            public void onResponse(Call call, Response response) throws IOException {
-
-                            }
-                        });
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        jsonObject.put("id",adress1.getId());
+//                        jsonObject.put("details",adress);
+//                        jsonObject.put("name",name);
+//                        jsonObject.put("phone",tel);
+//                        jsonObject.put("gender",gender);
+//                        Call call=WebService.GYM_call(post_new_adress, Token.access_token,"POST",jsonObject);
+//                        call.enqueue(new Callback() {
+//                            @Override
+//                            public void onFailure(Call call, IOException e) {
+//                                runOnUiThread(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        Toast.makeText(AdressActivity.this,"网络有误，上传失败，请检查网络",Toast.LENGTH_SHORT).show();
+//                                    }
+//                                });
+//                            }
+//                            @Override
+//                            public void onResponse(Call call, Response response) throws IOException {
+//
+//                            }
+//                        });
+//                    }catch (Exception e){
+//                        e.printStackTrace();
+//                    }
 
                }
                 break;
@@ -221,37 +239,38 @@ public class AdressActivity extends BaseActivity implements View.OnClickListener
                     final String adress=data.getStringExtra("address");
                     final String gender=data.getStringExtra("gender");
                     int position=data.getIntExtra("position",0);
-                    Constant.list.get(position).setSex(gender);
-                    Constant.list.get(position).setTel(tel);
+                    Constant.list.get(position).setGender(gender);
+                    Constant.list.get(position).setPhone(tel);
                     Constant.list.get(position).setName(name);
-                    Constant.list.get(position).setAdress(adress);
+                    Constant.list.get(position).setDetails(adress);
                     adapter.notifyDataSetChanged();
-                    JSONObject jsonObject=new JSONObject();
-                    try {
-                        jsonObject.put("adress",adress);
-                        jsonObject.put("name",name);
-                        jsonObject.put("phone",tel);
-                        jsonObject.put("gender",gender);
-                        Token.judge(this);
-                        Call call=WebService.GYM_call(put_change_adress, Token.access_token,"PUT",jsonObject);
-                        call.enqueue(new Callback() {
-                            @Override
-                            public void onFailure(Call call, IOException e) {
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(AdressActivity.this,"网络有误，修改失败，请检查网络",Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
-                            @Override
-                            public void onResponse(Call call, Response response) throws IOException {
-
-                            }
-                        });
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
+//                    JSONObject jsonObject=new JSONObject();
+//                    try {
+//                        jsonObject.put("id",position);
+//                        jsonObject.put("details",adress);
+//                        jsonObject.put("name",name);
+//                        jsonObject.put("phone",tel);
+//                        jsonObject.put("gender",gender);
+//                        Token.judge(this);
+//                        Call call=WebService.GYM_call(put_change_adress, Token.access_token,"PUT",jsonObject);
+//                        call.enqueue(new Callback() {
+//                            @Override
+//                            public void onFailure(Call call, IOException e) {
+//                                runOnUiThread(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        Toast.makeText(AdressActivity.this,"网络有误，修改失败，请检查网络",Toast.LENGTH_SHORT).show();
+//                                    }
+//                                });
+//                            }
+//                            @Override
+//                            public void onResponse(Call call, Response response) throws IOException {
+//
+//                            }
+//                        });
+//                    }catch (Exception e){
+//                        e.printStackTrace();
+//                    }
 //                Toast.makeText(this,"asd",Toast.LENGTH_SHORT).show();
                 }
                 break;
@@ -260,6 +279,7 @@ public class AdressActivity extends BaseActivity implements View.OnClickListener
     public void delete_adress(){
         Toast.makeText(this,"asdasdasd",Toast.LENGTH_SHORT).show();
         judge();
+//        Token.judge(this);
 //        Call call=WebService.GYM_call(delete_adress_cover,Token.access_token,"DELETE",null);
     }
 }

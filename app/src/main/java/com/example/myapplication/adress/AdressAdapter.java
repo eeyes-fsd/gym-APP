@@ -48,17 +48,17 @@ public class AdressAdapter extends RecyclerView.Adapter<AdressAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         final Adress adress=Constant.list.get(position);
-        holder.textView_tel.setText(adress.getTel());
-        holder.textView_name_gender.setText(adress.getName()+" "+adress.getSex());
-        holder.textView_adress.setText(adress.getAdress());
+        holder.textView_tel.setText(adress.getPhone());
+        holder.textView_name_gender.setText(adress.getName()+" "+adress.getGender());
+        holder.textView_adress.setText(adress.getDetails());
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(v.getContext(),Change_adress_Activity.class);
-                intent.putExtra("address",adress.getAdress());
+                intent.putExtra("address",adress.getDetails());
                 intent.putExtra("name",adress.getName());
-                intent.putExtra("phone",adress.getTel());
-                intent.putExtra("gender",adress.getSex());
+                intent.putExtra("phone",adress.getPhone());
+                intent.putExtra("gender",adress.getGender());
                 intent.putExtra("position",position);
                 adressActivity.startActivityForResult(intent,Constant.CHANGE_ADRESS);
                 adressActivity.finish();

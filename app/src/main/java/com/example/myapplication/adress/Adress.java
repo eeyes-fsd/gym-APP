@@ -4,46 +4,49 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 public class Adress {
-    private int ID;
-    public Adress(){
-    }
-    public Adress(String adress, String sex, String tel, String name) {
-        this.adress = adress;
-        this.sex = sex;
-        this.tel = tel;
+    private int id;
+    private String details;
+    private String gender;
+    private String phone;
+    private String name;
+
+    public Adress(String details, String gender, String phone, String name) {
+        this.details = details;
+        this.gender = gender;
+        this.phone = phone;
         this.name = name;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getDetails() {
+        return details;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setDetails(String details) {
+        this.details = details;
     }
 
-    public String getSex() {
-        return sex;
+    public String getGender() {
+        return gender;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public String getTel() {
-        return tel;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getName() {
@@ -53,11 +56,6 @@ public class Adress {
     public void setName(String name) {
         this.name = name;
     }
-
-    private String adress;
-    private String sex;
-    private String tel;
-    private String name;
 }
 
 

@@ -6,10 +6,13 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -18,14 +21,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.adress.Adress;
 import com.example.myapplication.food_shop.Food;
 import com.example.myapplication.food_shop.Global_shop_cart;
 import com.example.myapplication.food_shop.Shop_cart_adapter;
 import com.example.myapplication.food_shop.TaoCan;
 import com.example.myapplication.food_shop.TaoCanAdapter;
+import com.example.myapplication.web.MyProgressDialog;
+import com.example.myapplication.web.Token;
+import com.example.myapplication.web.WebService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.Random;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class Fra_food extends Fragment implements View.OnClickListener{
     private TextView textView_csd;
@@ -38,6 +52,7 @@ public class Fra_food extends Fragment implements View.OnClickListener{
     private View rootview;
     private View contentView;
     private ExpandableListView expandableListView;
+    private EditText editText;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,6 +61,7 @@ public class Fra_food extends Fragment implements View.OnClickListener{
         expandableListView=contentView.findViewById(R.id.shop_cart_elv);
         popupWindow=new PopupWindow(contentView, RadioGroup.LayoutParams.MATCH_PARENT, RadioGroup.LayoutParams.WRAP_CONTENT);
         popupWindow.setContentView(contentView);
+        editText=view.findViewById(R.id.fra_food_edit);
         rootview = LayoutInflater.from(getActivity()).inflate(R.layout.activity_taocan_sp_, null);
         MainActivity.MyTouchListener myTouchListener=new MainActivity.MyTouchListener() {
             @Override
@@ -97,7 +113,37 @@ public class Fra_food extends Fragment implements View.OnClickListener{
                 break;
         }
     }
+    private void Init(){//初始化套餐
+        if(Global_shop_cart.taoCanlist.size()!=0){
+            return;
+        }
+        Call call= WebService.GYM_call("/diets", Token.access_token,"GET",null);
+        MyProgressDialog.CreatProgressDialog(getActivity());
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                MyProgressDialog.Diss_progress_dialog();
+                Toast.makeText(getActivity(), "网络连接失败", Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                MyProgressDialog.Diss_progress_dialog();
+                String s=response.body().string();
+                ParseJson(s);
+            }
+        });
+    }
+    private void ParseJson(String s){
+        TaoCan[] taoCans=new Gson().fromJson(s,TaoCan[].class);
+        Global_shop_cart.taoCanlist.addAll(Arrays.asList(taoCans));
+        for (int i = 0; i <taoCans.length ; i++) {
+            Global_shop_cart.foodlist.add(taoCans[i].foodList);
+        }
+        adapter.notifyDataSetChanged();
+//        Adress[] adress=new Gson().fromJson(str,Adress[].class);
+
+    }
     private void Init_2(){
         if (Global_shop_cart.taoCanlist.isEmpty()){
             for(int i=0;i<10;i++){
@@ -107,21 +153,6 @@ public class Fra_food extends Fragment implements View.OnClickListener{
             }
         }
     }
-
-
-//    private void show_shop_cart(){
-//        ExpandableListView expandableListView=getView().findViewById(R.id.shop_cart_elv);
-//        Shop_cart_adapter shop_cart_adapter=new Shop_cart_adapter(getContext());
-//        expandableListView.setAdapter(shop_cart_adapter);
-//        for (int i = 0; i< Global_shop_cart.taoCanlist.size(); i++){
-//            expandableListView.expandGroup(i);
-//        }
-//        View view=LayoutInflater.from(getActivity()).inflate(R.layout.shop_cart,null);
-//        popupWindow=new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//        View rootview=LayoutInflater.from(getActivity()).inflate(R.layout.fra_food,null);
-//        popupWindow.setContentView(view);
-//        popupWindow.showAtLocation(rootview, Gravity.BOTTOM,0,0);
-//    }
     private void Init_1(){
         taoCans[0].foodList.add(new Food(10,"1猪肉"));
         taoCans[0].foodList.add(new Food(10,"1牛肉"));
@@ -131,6 +162,10 @@ public class Fra_food extends Fragment implements View.OnClickListener{
         taoCans[2].foodList.add(new Food(16,"3牛肉"));
         taoCans[3].foodList.add(new Food(13,"4猪肉"));
         taoCans[3].foodList.add(new Food(5,"4牛肉"));
+    }
+    void search(String s){
+        s=editText.getText().toString();
+
     }
 
 }

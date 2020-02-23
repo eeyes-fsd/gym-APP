@@ -6,52 +6,65 @@
     android:layout_height="match_parent"
     tools:context=".Test_Hight_WeightActivity">
     <LinearLayout
+        android:layout_marginLeft="55px"
+        android:layout_marginRight="55px"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
             android:text="完善身体数据"
-            android:textSize="30dp"
+            android:textSize="79px"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <LinearLayout
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
                 android:text="性别"
-                android:textSize="24dp"
+                android:textSize="40px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:layout_marginTop="19px"
                 android:id="@+id/healthy_gender"
                 android:layout_width="match_parent"
                 android:text="男"
+                android:textSize="40px"
                 android:layout_height="wrap_content" />
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#22000000"/>
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:textSize="24dp"
+                android:textSize="40px"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="出生日期"/>
             <TextView
-                android:clickable="true"
+                android:layout_marginTop="19px"
+                android:textSize="40px"
                 android:id="@+id/text_my_birth_day"
                 android:text="my_birth_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#22000000"/>
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -59,18 +72,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="身高"
-                android:textSize="24dp"/>
+                android:textSize="40px"/>
             <TextView
+                android:layout_marginTop="19px"
                 android:clickable="true"
                 android:text="请输入身高，单位厘米"
-                android:textSize="18dp"
+                android:textSize="40px"
                 android:id="@+id/my_hight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#22000000"/>
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -78,18 +96,23 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:text="体重"
-               android:textSize="24dp"/>
+               android:textSize="40px"/>
             <TextView
+                android:layout_marginTop="19px"
                 android:clickable="true"
                 android:text="请输入体重，单位千克"
-                android:textSize="18dp"
+                android:textSize="40px"
                 android:id="@+id/my_weight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#22000000"/>
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -97,18 +120,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="运动量"
-                android:textSize="24dp"/>
+                android:textSize="40px"/>
             <TextView
+                android:layout_marginTop="19px"
                 android:clickable="true"
                 android:text="请选择运动量"
-                android:textSize="18dp"
+                android:textSize="40px"
                 android:id="@+id/exercise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#22000000"/>
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -116,26 +144,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="饮食控制目的"
-                android:textSize="24dp"/>
+                android:textSize="40px"/>
             <TextView
-
+                android:layout_marginTop="19px"
                 android:clickable="true"
                 android:text="请输入目的"
-                android:textSize="18dp"
+                android:textSize="40px"
                 android:id="@+id/target"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#22000000"/>
         </LinearLayout>
         <TextView
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="60px"
             android:text="选填项"
-            android:textSize="30dp"
+            android:textSize="69px"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
-            android:layout_marginLeft="20dp"
+
             android:text="完整填写获得更准确测量结果"
-            android:textSize="12dp"
+            android:textSize="40px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <LinearLayout
@@ -143,36 +177,51 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:textSize="24dp"
+                android:layout_marginTop="42px"
+                android:textSize="40px"
                 android:text="体脂率"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
+                android:layout_marginTop="19px"
+                android:textSize="40px"
                 android:text="请输入您的体脂率"
                 android:textColor="@color/food_gray"
                 android:id="@+id/fat_rate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#22000000"/>
         </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:textSize="24dp"
+                android:layout_marginTop="42px"
+                android:textSize="40px"
                 android:text="骨盐率"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
+                android:layout_marginTop="19px"
                 android:text="请输入您的骨盐率"
                 android:textColor="@color/food_gray"
                 android:id="@+id/salt_rate"
+                android:textSize="40px"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#22000000"/>
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -180,8 +229,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="作息时间"
-                android:textSize="24dp"/>
+                android:textSize="40px"/>
             <LinearLayout
+                android:layout_marginTop="19px"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -218,12 +268,19 @@
                     android:layout_height="match_parent">
                 </LinearLayout>
             </LinearLayout>
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#22000000"/>
         </LinearLayout>
         <Button
             android:layout_gravity="center"
             android:text="确定"
+            android:textColor="#FFFF"
+            android:background="#F83A51"
             android:id="@+id/healthy_submit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
 </ScrollView>

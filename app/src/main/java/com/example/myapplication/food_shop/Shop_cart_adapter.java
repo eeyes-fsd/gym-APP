@@ -20,14 +20,14 @@ public class Shop_cart_adapter extends BaseExpandableListAdapter {
     }
      static class TaocanHolder{
         private TextView taocan_name;
-        private TextView taocan_num;
-        private Button taocan_add;
-        private Button taocan_sub;
+//        private TextView taocan_num;
+//        private Button taocan_add;
+//        private Button taocan_sub;
         public TaocanHolder(View view) {
             taocan_name=view.findViewById(R.id.taocan_shop_cart_name);
-            taocan_num=view.findViewById(R.id.tv_taocan_num);
-            taocan_add=view.findViewById(R.id.btn_taocan_add);
-            taocan_sub=view.findViewById(R.id.btn_taocan_sub);
+//            taocan_num=view.findViewById(R.id.tv_taocan_num);
+//            taocan_add=view.findViewById(R.id.btn_taocan_add);
+//            taocan_sub=view.findViewById(R.id.btn_taocan_sub);
         }
     }
 
@@ -60,31 +60,31 @@ public class Shop_cart_adapter extends BaseExpandableListAdapter {
             convertView= LayoutInflater.from(mcontext).inflate(R.layout.taocan_shop_cart,parent,false);
         }
         final TaocanHolder taocanHolder=new TaocanHolder(convertView);
-        final int num=Global_shop_cart.taoCan_bought_list.get(groupPosition).getNum();
+//        final int num=Global_shop_cart.taoCan_bought_list.get(groupPosition).getNum();
         taocanHolder.taocan_name.setText(Global_shop_cart.taoCan_bought_list.get(groupPosition).getName());
-        taocanHolder.taocan_num.setText(Integer.toString(num));
-        taocanHolder.taocan_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                int num=Global_shop_cart.taoCanlist.get(groupPosition).getNum();
-//                Global_shop_cart.taoCanlist.get(groupPosition).setNum(num+1);
-//                Toast.makeText(v.getContext(),Integer.toString(Global_shop_cart.taoCanlist.get(groupPosition).getNum()),Toast.LENGTH_SHORT).show();
-//                taocanHolder.taocan_num.setText(Integer.toString(Global_shop_cart.taoCanlist.get(groupPosition).getNum()));
-                Global_shop_cart.bought_add(groupPosition);
-                notifyDataSetChanged();
-            }
-        });
-        taocanHolder.taocan_sub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                int num=Global_shop_cart.taoCanlist.get(groupPosition).getNum();
-//                Global_shop_cart.taoCanlist.get(groupPosition).setNum(num-1);
-//                Toast.makeText(v.getContext(),Integer.toString(Global_shop_cart.taoCanlist.get(groupPosition).getNum()),Toast.LENGTH_SHORT).show();
-//                taocanHolder.taocan_num.setText(Integer.toString(Global_shop_cart.taoCanlist.get(groupPosition).getNum()));
-                Global_shop_cart.bought_sub(groupPosition);
-                notifyDataSetChanged();
-            }
-        });
+//        taocanHolder.taocan_num.setText(Integer.toString(num));
+//        taocanHolder.taocan_add.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                int num=Global_shop_cart.taoCanlist.get(groupPosition).getNum();
+////                Global_shop_cart.taoCanlist.get(groupPosition).setNum(num+1);
+////                Toast.makeText(v.getContext(),Integer.toString(Global_shop_cart.taoCanlist.get(groupPosition).getNum()),Toast.LENGTH_SHORT).show();
+////                taocanHolder.taocan_num.setText(Integer.toString(Global_shop_cart.taoCanlist.get(groupPosition).getNum()));
+//                Global_shop_cart.bought_add(groupPosition);
+//                notifyDataSetChanged();
+//            }
+//        });
+//        taocanHolder.taocan_sub.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                int num=Global_shop_cart.taoCanlist.get(groupPosition).getNum();
+////                Global_shop_cart.taoCanlist.get(groupPosition).setNum(num-1);
+////                Toast.makeText(v.getContext(),Integer.toString(Global_shop_cart.taoCanlist.get(groupPosition).getNum()),Toast.LENGTH_SHORT).show();
+////                taocanHolder.taocan_num.setText(Integer.toString(Global_shop_cart.taoCanlist.get(groupPosition).getNum()));
+//                Global_shop_cart.bought_sub(groupPosition);
+//                notifyDataSetChanged();
+//            }
+//        });
         return convertView;
     }
 

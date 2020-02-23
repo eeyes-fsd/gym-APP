@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
-    <ImageView
+    <com.shehuan.niv.NiceImageView
+        app:corner_radius="20dp"
         android:id="@+id/recipe_img"
         android:layout_width="match_parent"
         android:layout_height="210dp" />
     <TextView
-        android:text="介绍，待匹配"
+        android:textStyle="bold"
+        android:textSize="24dp"
+        android:text="食谱名字"
         android:id="@+id/recipe_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="\n介绍，待匹配"
+        android:id="@+id/recipe_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <TextView
@@ -19,7 +28,7 @@
     <TextView
         android:id="@+id/text_btn"
         android:textColor="#F8FF0000"
-        android:text="立刻解锁配餐"
+        android:text="\n立刻解锁配餐"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>

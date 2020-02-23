@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="50dp">
+    android:layout_height="80dp">
     <LinearLayout
         android:layout_weight="1"
         android:orientation="vertical"
         android:layout_width="0dp"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         <TextView
             android:id="@+id/food_shop_cart_name"
             android:layout_weight="1"
@@ -25,21 +25,32 @@
         android:orientation="horizontal"
         android:layout_weight="1"
         android:layout_width="0dp"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         <Button
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/round_little_white"
             android:id="@+id/shop_cart_btn_sub"
+            android:layout_marginRight="20dp"
             android:text="-"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_marginLeft="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
         <TextView
+            android:textSize="20dp"
+            android:layout_gravity="center"
             android:id="@+id/shop_cart_num"
             android:text="数量"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <Button
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/round_pic"
             android:id="@+id/shop_cart_btn_add"
             android:text="+"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/main_nv"
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
     </LinearLayout>
 </LinearLayout>

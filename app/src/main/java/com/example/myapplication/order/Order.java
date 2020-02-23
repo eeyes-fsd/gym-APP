@@ -7,7 +7,8 @@ public class Order {
     private String name;
     private List<Order_Item> list;
     private String time;
-
+    private String code;
+    
     public String getTime() {
         return time;
     }

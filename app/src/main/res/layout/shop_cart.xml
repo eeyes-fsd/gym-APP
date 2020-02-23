@@ -1,36 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/main_nv"
+    android:background="@drawable/shop_cart_top_yuanjiao"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:gravity="bottom"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="500dp">
+            <TextView
+                android:layout_margin="20dp"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:text="所有商品"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                />
             <ExpandableListView
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:divider="@null"
+                android:groupIndicator="@null"
                 android:id="@+id/shop_cart_elv"
                 android:layout_width="match_parent"
-                android:layout_height="500dp">
+                android:layout_height="470dp">
             </ExpandableListView>
         </LinearLayout>
     </ScrollView>
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <TextView
-            android:text="价格：￥123"
-            android:id="@+id/shop_cart_price"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:text="下单" />
-    </RelativeLayout>
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <ImageView
+                android:id="@+id/shop_cart_icon_po"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="30dp"
+                android:src="@drawable/shop_shop_cart_icon"/>
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/shop_cart_price"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/shop_cart_icon_po"
+                android:layout_marginStart="30dp"
+                android:text="总计:￥123" />
+            <Button
+                android:background="#F83A51"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_alignParentRight="true"
+                android:text="立刻下单" />
+        </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>

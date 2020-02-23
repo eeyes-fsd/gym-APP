@@ -28,6 +28,8 @@ import com.example.myapplication.main_page.BaseActivity;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.io.BufferedReader;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Taocan_sp_Activity extends BaseActivity implements View.OnClickListener {
@@ -40,6 +42,8 @@ public class Taocan_sp_Activity extends BaseActivity implements View.OnClickList
     private RecyclerView recyclerView2;
     private RecyclerView recyclerView3;
     private int position;
+    private static         List<String> list=new ArrayList<>();
+    private TaocanSpRawTextAdapter taocanSpRawTextAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,12 +66,18 @@ public class Taocan_sp_Activity extends BaseActivity implements View.OnClickList
         button3.setOnClickListener(this);
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerView1=findViewById(R.id.taocan_sp_shushi_pic);
-        recyclerView1.setLayoutManager(layoutManager);
-        recyclerView2=findViewById(R.id.taocan_sp_raw_pic);
-        recyclerView2.setLayoutManager(layoutManager);
+//        recyclerView1=findViewById(R.id.taocan_sp_shushi_pic);
+//        recyclerView1.setLayoutManager(layoutManager);
+//        recyclerView2=findViewById(R.id.taocan_sp_raw_pic);
+//        recyclerView2.setLayoutManager(layoutManager);
         recyclerView3=findViewById(R.id.taocan_sp_raw_text);
         recyclerView3.setLayoutManager(new LinearLayoutManager(this));
+        list.add("东鸡胸肉+1431");
+        list.add("西兰花+1431");
+        list.add("牛油果+1431");
+        taocanSpRawTextAdapter=new TaocanSpRawTextAdapter(list);
+        recyclerView3.setAdapter(taocanSpRawTextAdapter);
+
         //下面是适配器
 
         //        setSupportActionBar(toolbar);

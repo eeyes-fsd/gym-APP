@@ -49,9 +49,9 @@ public class Pay_Adress_Adapter extends RecyclerView.Adapter<Pay_Adress_Adapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder,final int position) {
         final Adress adress= Constant.list.get(position);
-        holder.textView_tel.setText(adress.getTel());
-        holder.textView_name_gender.setText(adress.getName()+" "+adress.getSex());
-        holder.textView_adress.setText(adress.getAdress());
+        holder.textView_tel.setText(adress.getPhone());
+        holder.textView_name_gender.setText(adress.getName()+" "+adress.getGender());
+        holder.textView_adress.setText(adress.getDetails());
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

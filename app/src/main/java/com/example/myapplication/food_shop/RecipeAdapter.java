@@ -44,11 +44,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         ImageView imageView_img;
         TextView textView_shicai;
         TextView textView_name;
+        TextView textView_desc;
         TextView textView_btn;
       //  Button button;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView_name=itemView.findViewById(R.id.recipe_name);//简介
+            textView_name=itemView.findViewById(R.id.recipe_name);
+            textView_desc=itemView.findViewById(R.id.recipe_desc);//简介
             textView_shicai=itemView.findViewById(R.id.recipe_shicai);//食材
             imageView_img=itemView.findViewById(R.id.recipe_img);//图片
             textView_btn=itemView.findViewById(R.id.text_btn);
@@ -71,11 +73,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final TaoCan taoCan=taoCanList.get(position);
+
         //holder.imageView_img.setImageResource(taoCan.getImageId());
         holder.textView_name.setText(taoCan.getName());
-        holder.textView_shicai.setText(taoCan.getDescription());
+        holder.textView_desc.setText(taoCan.getDescription());
 
-        Request request=new Request.Builder().url(taoCan.getHttp_pic()).build();
+        Request request=new Request.Builder().url(taoCan.getCover()).build();
         final OkHttpClient client=new OkHttpClient();
         client.newCall(request).enqueue(new Callback() {
             @Override
